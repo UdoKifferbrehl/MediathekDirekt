@@ -1,0 +1,87 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01//EN">
+<html>
+<head>
+<!-- 
+  Diese Website steht unter der GNU GENERAL PUBLIC LICENSE, Version 3
+  http://www.gnu.org/licenses/gpl-3.0.txt
+-->
+<title>Mediatheken - Suche</title>
+<meta http-equiv="Content-Type" content="text/html;charset=utf-8" />
+<meta name="viewport" content="width=device-width" />
+<link href="mediathekensuche.png" rel="icon" type="image/png">
+<link href="mediathekensuche.png" rel="apple-touch-icon" sizes="96x96">
+<style type="text/css">
+body { margin:0 auto; padding:10pt; max-width:800px; font-family:'sans-serif',Arial; font-size:120%; }
+input { width:97%; border:1px solid gray; font-size:120%; margin:8pt 0pt; padding:4pt;}
+input:hover {border-color:black;}
+#results { margin:20pt 0pt; }
+div .res { margin:10pt 0pt; }
+div .resmore { margin:10pt 0pt; display:none; }
+.r2 { color:green; font-size:80%;}
+.r3 { color:gray; font-size:80%;}
+</style>
+</head>
+<body>
+<img src="mediathekensuche.png" width="96" height="96" style="float:right; margin:10px;"/> 
+<h2>Mediatheken-<wbr />Suche</h2>
+<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js">
+</script>
+<script>
+var data = [];
+$.getJSON("good.json", function(jsondata)
+{
+  data = data.concat(jsondata);
+  document.getElementById("message").innerHTML="Suche nach Sendung: (nur letzte Woche, lade noch weiter...)";
+  search(document.getElementById("needle").value);
+});
+$.getJSON("medium.json", function(jsondata)
+{
+  data = data.concat(jsondata);
+  document.getElementById("message").innerHTML="Suche nach Sendung:";
+  search(document.getElementById("needle").value);
+});
+
+function printSendung(s, classname)
+{
+  link = s[7].substr(s[7].lastIndexOf('.') + 1);
+  document.getElementById("results").innerHTML+="<div class='"+classname+"'><span class='r1'><a href='"+s[7]+"'>"+s[1]+" "+s[2]+"</a> <a href='"+s[8]+"' style='font-size:80%'>web</a></span><br><span class='r2'>"+s[0]+" "+s[3]+" "+s[4]+" "+s[5]+" "+link+"</span><br><span class='r3'>"+s[6]+"</a></div>";
+}
+
+function search(needle)
+{
+  document.getElementById("results").innerHTML="";
+  $("#mehr").hide();
+  var r = 0;
+  for(var i = 0; i<data.length && r<30; i++)
+  {
+    var d = data[i];
+    if(d[1].toLowerCase().indexOf(needle.toLowerCase()) >= 0 || d[2].toLowerCase().indexOf(needle.toLowerCase()) >= 0)
+    {
+      if(r<5) printSendung(d, 'res');
+      else { printSendung(d, 'resmore'); $("#mehr").show(); }
+      r++;
+    }
+  }
+  if(r==0) {
+    document.getElementById("results").innerHTML+="Sorry.";
+  }
+}
+function tipp(s)
+{
+  document.getElementById("needle").value=s;
+  search(s);
+}
+function more() { $(".resmore").show(); $("#mehr").hide();}
+</script>
+<p />
+<div id="message">Lade Daten zu allen Sendungen, bitte etwas Geduld...</div>
+<form onSubmit="return false;">
+<input onKeyUp="search(this.value)" autofocus size="40" id="needle" />
+</form>
+<div class='r3'>Suchtipps: <a href="javascript:tipp('wie werd\' ich')">wie werd' ich</a> <a href="javascript:tipp('tatort')">tatort</a> <a href="javascript:tipp('scobel')">scobel</a> <a href="javascript:tipp('quarks')">quarks</a> <a href="javascript:tipp('37 grad')">37 grad</a> <a href="javascript:tipp('nano')">nano</a></div>
+<div id="results"></div>
+<p />
+<input id="mehr" type="button" value="mehr..." onclick='more();' />
+<div class='r3'>Nutzer, die diese Website mögen, mögen auch: <a href="http://www.piratenpartei.de/">Piratenpartei</a><br>Verwendete Software und Datenquelle: <a href="http://zdfmediathk.sourceforge.net/">MediathekView</a><br>Mediatheken-Suche v0.2 <a href="INSTALL.txt">Anleitung zum installieren</a></div>
+</body>
+</html>

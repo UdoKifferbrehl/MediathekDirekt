@@ -1,0 +1,58 @@
+
+Mediatheken - Suche v0.2
+
+Diese Software steht unter der Lizenz GPLv3: 
+GNU GENERAL PUBLIC LICENSE, Version 3
+http://www.gnu.org/licenses/gpl-3.0.txt
+
+
+Die Mediatheken-Suche besteht aus einem serverseitigen
+Python-Skript, das die Daten sammelt und sortiert
+als zwei JSON-Dateien speichert, und einer 
+clientseitigen HTML-Javascript-Seite als "Suchmaschine".
+
+- mediathek.py : serverseitiger täglicher Sammeldienst
+- index.html : clientseitige Suchmaschine
+- mediathek.xml : Linkliste für Datenquellen
+- mediathekensuche.png
+- mediathekensuche.svg
+- INSTALL.txt (diese Datei)
+
+automatisch generiert:
+- good.json : sehr relevante Suchdaten (~500 kB)
+- medium.json : relevante Suchdaten (~3 MB)
+- full.json : gesamte Daten (>50 MB)
+- mediathek.log
+
+
+*** Installationsanleitung:
+
+1. Obige Dateien auf den eigenen Webserver kopieren. Gehen
+ wir davon aus, die Dateien sind jetzt in /var/www/mediathek_ordner/
+ Zugriffsreche vernünftig setzen:
+  cd  /var/www/mediathek_ordner/
+  chmod 644 *
+  chmod 744 *.py
+  chmod 600 full.json
+
+2. Auf dem Server die Abhängigkeiten für mediatheken.py installieren,
+ z.B. in Ubuntu/Debian:
+  sudo apt-get install python-lzma python-lxml
+  
+3. Zeitgesteuerten dreistündlichen Cronjob hinzufügen:
+   (crontab -l ; echo "0 */3 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1")| crontab -
+ alternativ "crontab -e" ausführen und folgende Zeile von Hand einfügen:
+0 */3 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1
+ alternativ aus nur täglich sammeln:
+0 21 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1
+   
+4. Einmal testen:
+  ./mediathek.py
+ (sollte keine Fehler werfen)
+
+5. Im Webbrowser die Adresse von index.html ansteuern und 
+ die Mediatheken-Suche verwenden.
+
+
+
+
