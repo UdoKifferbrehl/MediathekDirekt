@@ -1,12 +1,16 @@
 
-Mediatheken - Suche v0.2
+MediathekView Websuche v0.2.1 - 2014-04-10
 
-Diese Software steht unter der Lizenz GPLv3: 
+*** Lizenz:
+
+Diese Software (mediathek.py index.html INSTALL.txt mediathekensuche.svg)
+steht unter der Lizenz GPLv3: 
 GNU GENERAL PUBLIC LICENSE, Version 3
 http://www.gnu.org/licenses/gpl-3.0.txt
 
+*** Zusammenfassung:
 
-Die Mediatheken-Suche besteht aus einem serverseitigen
+Die MediathekView Websuche besteht aus einem serverseitigen
 Python-Skript, das die Daten sammelt und sortiert
 als zwei JSON-Dateien speichert, und einer 
 clientseitigen HTML-Javascript-Seite als "Suchmaschine".
@@ -38,21 +42,32 @@ automatisch generiert:
 2. Auf dem Server die Abhängigkeiten für mediatheken.py installieren,
  z.B. in Ubuntu/Debian:
   sudo apt-get install python-lzma python-lxml
+ z.B. in Arch Linux:      
+  pacman -S python xz
   
-3. Zeitgesteuerten dreistündlichen Cronjob hinzufügen:
-   (crontab -l ; echo "0 */3 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1")| crontab -
- alternativ "crontab -e" ausführen und folgende Zeile von Hand einfügen:
-0 */3 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1
- alternativ aus nur täglich sammeln:
-0 21 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1
-   
-4. Einmal testen:
+3. Einmal testen:
   ./mediathek.py
  (sollte keine Fehler werfen)
 
-5. Im Webbrowser die Adresse von index.html ansteuern und 
- die Mediatheken-Suche verwenden.
+4. Zeitgesteuerten täglichen Cronjob hinzufügen:
+   (crontab -l ; echo "0 21 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1")| crontab -
+ alternativ "crontab -e" ausführen und folgende Zeile von Hand einfügen:
+0 21 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1
+ alternativ alle drei Stunden sammeln:
+0 */3 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1
+ In manchen Systemen muss noch der Daemon gestartet werden,
+ z.B. Arch Linux: 
+  systemctl enable cronie
 
+5. Im Webbrowser die Adresse von index.html ansteuern und 
+ die MediathekView Websuche verwenden.
+
+
+
+*** Changelog:
+
+2014-04-10 v0.2.1 Korrekturen für Python3 und Arch Linux, Umbennung in "MediathekView Websuche"
+2014-03-31 v0.2   erste lauffähige Version
 
 
 
