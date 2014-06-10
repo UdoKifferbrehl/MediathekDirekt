@@ -6,9 +6,9 @@
 #http://www.gnu.org/licenses/gpl-3.0.txt
 
 #Version: v0.2.1 2014-04-10
-  
+
 #Requires:
-# Ubuntu/Debian:   sudo apt-get install python python-lzma  #python-lxml 
+# Ubuntu/Debian:   sudo apt-get install python python-lzma  #python-lxml
 # Arch Linux:      pacman -S python xz
 
 #Settings:
@@ -39,7 +39,7 @@ print("Mediatheken - Suche: Starting download")
 
 #Download
 xmldoc = minidom.parse('mediathek.xml')
-itemlist = xmldoc.getElementsByTagName('film-update-server-url') 
+itemlist = xmldoc.getElementsByTagName('film-update-server-url')
 for item in itemlist[:10]:
 	try:
 		url = item.firstChild.nodeValue
@@ -114,12 +114,12 @@ for line in fin:
 			relevance += 40
 		dline = [sender, thema, titel, datum, zeit, dauer, beschreibung[:80], url, website, relevance]
 		output.append(dline)
-		
+
 #Sort by relevance
 sorted_output = sorted(output, key=lambda tup: tup[-1], reverse=True)
 output_good = sorted_output[:600]
 output_medium = sorted_output[601:10000]
-	
+
 print('Selected {} good ones and {} medium ones, wrote them to json files.'.format(len(output_good), len(output_medium)))
 print('Ignored {} url duplicates and failed to parse {} out of {} lines.'.format(url_duplicates, fail, lines))
 
