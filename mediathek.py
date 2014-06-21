@@ -2,8 +2,19 @@
 
 #MediathekView Websuche - Serverskript
 
-#Lizenz: GNU GENERAL PUBLIC LICENSE, Version 3
-#http://www.gnu.org/licenses/gpl-3.0.txt
+#This program is free software: you can redistribute it and/or modify
+#it under the terms of the GNU General Public License as published by
+#the Free Software Foundation, either version 3 of the License, or
+#any later version.
+#
+#This program is distributed in the hope that it will be useful,
+#but WITHOUT ANY WARRANTY; without even the implied warranty of
+#MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+#GNU General Public License for more details.
+#
+#You should have received a copy of the GNU General Public License
+#along with this program. If not, see
+#<http://www.gnu.org/licenses/>.
 
 #Version: v0.2.1 2014-04-10
 
@@ -47,7 +58,8 @@ for item in itemlist[:10]:
         html = response.read()
         print("Downloaded {} bytes from {}.".format(len(html), url))
         data = lzma.decompress(html)
-        print("Extracted {} bytes with {} lines.".format(len(data), data.count(b"\n")))
+        print("Extracted {} bytes with {} lines.".format(len(data),
+                                                         data.count(b"\n")))
         if data.count(b"\n") > 10000:
             fout = open('full.json', 'wb')
             fout.write(data)
@@ -92,7 +104,8 @@ with open('full.json', encoding='utf-8') as fin:
         bild = l[10]
         try:
             datum_tm = time.strptime(datum, "%d.%m.%Y")
-            zeit_s = time.mktime(time.strptime(zeit, "%H:%M:%S")) - time.mktime(time.strptime("00:00:00", "%H:%M:%S"))
+            zeit_s = (time.mktime(time.strptime(zeit, "%H:%M:%S")) -
+                     time.mktime(time.strptime("00:00:00", "%H:%M:%S")))
             groesse_mb = float(l[6])
         except ValueError:
             fail+=1
@@ -112,7 +125,8 @@ with open('full.json', encoding='utf-8') as fin:
                 relevance += 100
             elif(datum_tm > medium_from and datum_tm < medium_to):
                 relevance += 40
-            dline = [sender, thema, titel, datum, zeit, dauer, beschreibung[:80], url, website, relevance]
+            dline = [sender, thema, titel, datum, zeit, dauer,
+                     beschreibung[:80], url, website, relevance]
             output.append(dline)
 
 #Sort by relevance
@@ -120,8 +134,10 @@ sorted_output = sorted(output, key=lambda tup: tup[-1], reverse=True)
 output_good = sorted_output[:600]
 output_medium = sorted_output[601:10000]
 
-print('Selected {} good ones and {} medium ones, wrote them to json files.'.format(len(output_good), len(output_medium)))
-print('Ignored {} url duplicates and failed to parse {} out of {} lines.'.format(url_duplicates, fail, lines))
+print('Selected {} good ones and {} medium ones, wrote them to json files.'
+      .format(len(output_good), len(output_medium)))
+print('Ignored {} url duplicates and failed to parse {} out of {} lines.'
+      .format(url_duplicates, fail, lines))
 
 with open('good.json', mode='w', encoding='utf-8') as fout:
     json.dump(output_good, fout)
