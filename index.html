@@ -19,6 +19,7 @@ div .res { margin:10pt 0pt; }
 div .resmore { margin:10pt 0pt; display:none; }
 .r2 { color:green; font-size:80%;}
 .r3 { color:gray; font-size:80%;}
+noscript p {color:red;}
 </style>
 </head>
 <body>
@@ -73,6 +74,10 @@ function tipp(s)
 }
 function more() { $(".resmore").show(); $("#mehr").hide();}
 </script>
+<noscript>
+    <p>Bitte aktivieren Sie JavaScript, um alle Funktionen dieser Website nutzen
+    zu können.</p>
+</noscript>
 <p />
 <div id="message">Lade Daten zu allen Sendungen, bitte etwas Geduld...</div>
 <form onSubmit="return false;">
