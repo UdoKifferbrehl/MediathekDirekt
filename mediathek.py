@@ -59,7 +59,7 @@ for item in itemlist[:10]:
             print("Failed, retry up to 10 times.")
 
 #Convert and select
-fin = open('full.json', 'r')
+with open('full.json', encoding='utf-8') as fin:
 fail = 0
 sender = ''
 thema = ''
@@ -123,10 +123,10 @@ output_medium = sorted_output[601:10000]
 print('Selected {} good ones and {} medium ones, wrote them to json files.'.format(len(output_good), len(output_medium)))
 print('Ignored {} url duplicates and failed to parse {} out of {} lines.'.format(url_duplicates, fail, lines))
 
-fout = open('good.json', 'w')
-json.dump(output_good, fout)
-fout = open('medium.json', 'w')
-json.dump(output_medium, fout)
+with open('good.json', mode='w', encoding='utf-8') as fout:
+    json.dump(output_good, fout)
+with open('medium.json', mode='w', encoding='utf-8') as fout:
+    json.dump(output_medium, fout)
 
 print("Mediatheken - Suche: Fertig")
 print(str(datetime.now()))
