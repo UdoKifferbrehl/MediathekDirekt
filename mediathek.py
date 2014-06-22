@@ -36,6 +36,7 @@ import lzma
 
 #Paths
 LOG_FILENAME = 'mediathek.log'
+URL_SOURCE = 'mediathek.xml'
 
 
 #Settings:
@@ -46,7 +47,7 @@ medium_plus_sec = 50*60*60*24
 good_minus_sec = 7*60*60*24
 good_plus_sec = 1*60*60*24
 
-
+#Logging
 logging.basicConfig(filename=LOG_FILENAME, level=logging.INFO)
 logger = logging.getLogger("mediathek")
 
@@ -55,7 +56,7 @@ logger.info(str(datetime.now()))
 logger.info("Mediatheken - Suche: Starting download")
 
 #Download
-xmldoc = minidom.parse('mediathek.xml')
+xmldoc = minidom.parse(URL_SOURCE)
 itemlist = xmldoc.getElementsByTagName('film-update-server-url')
 for item in itemlist[:10]:
     try:
