@@ -1,4 +1,5 @@
 #!/usr/bin/env python
+
 """
 MediathekView Websuche - Serverskript
 
@@ -26,10 +27,7 @@ along with this program. If not, see
 import os
 os.nice(5)
 import json
-try:
-    from urllib.request import urlopen
-except ImportError: #Python 2.x
-    from urllib2 import urlopen
+from urllib.request import urlopen
 from xml.dom import minidom
 import lzma
 import time
