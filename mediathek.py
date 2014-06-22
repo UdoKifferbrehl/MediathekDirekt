@@ -27,11 +27,15 @@ along with this program. If not, see
 import os
 os.nice(5)
 import json
+import time
+import logging
 from urllib.request import urlopen
 from xml.dom import minidom
-import lzma
-import time
 from datetime import datetime, timedelta
+import lzma
+
+#Paths
+LOG_FILENAME = 'mediathek.log'
 
 
 #Settings:
@@ -43,10 +47,12 @@ good_minus_sec = 7*60*60*24
 good_plus_sec = 1*60*60*24
 
 
+logging.basicConfig(filename=LOG_FILENAME, level=logging.INFO)
+logger = logging.getLogger("mediathek")
 
-print("***")
-print(str(datetime.now()))
-print("Mediatheken - Suche: Starting download")
+logger.info("***")
+logger.info(str(datetime.now()))
+logger.info("Mediatheken - Suche: Starting download")
 
 #Download
 xmldoc = minidom.parse('mediathek.xml')
@@ -56,9 +62,9 @@ for item in itemlist[:10]:
         url = item.firstChild.nodeValue
         response = urlopen(url)
         html = response.read()
-        print("Downloaded {} bytes from {}.".format(len(html), url))
+        logger.info("Downloaded {} bytes from {}.".format(len(html), url))
         data = lzma.decompress(html)
-        print("Extracted {} bytes with {} lines.".format(len(data),
+        logger.info("Extracted {} bytes with {} lines.".format(len(data),
                                                          data.count(b"\n")))
         if data.count(b"\n") > 10000:
             fout = open('full.json', 'wb')
@@ -66,9 +72,9 @@ for item in itemlist[:10]:
             fout.close()
             break
         else:
-            print("Seems too little data, retry.")
+            logger.warning("Seems too little data, retry.")
     except (TypeError, IOError, ValueError, AttributeError):
-            print("Failed, retry up to 10 times.")
+            logger.error("Failed, retry up to 10 times.")
 
 #Convert and select
 with open('full.json', encoding='utf-8') as fin:
@@ -134,9 +140,9 @@ sorted_output = sorted(output, key=lambda tup: tup[-1], reverse=True)
 output_good = sorted_output[:600]
 output_medium = sorted_output[601:10000]
 
-print('Selected {} good ones and {} medium ones, wrote them to json files.'
+logger.info('Selected {} good ones and {} medium ones, wrote them to json files.'
       .format(len(output_good), len(output_medium)))
-print('Ignored {} url duplicates and failed to parse {} out of {} lines.'
+logger.info('Ignored {} url duplicates and failed to parse {} out of {} lines.'
       .format(url_duplicates, fail, lines))
 
 with open('good.json', mode='w', encoding='utf-8') as fout:
@@ -144,6 +150,6 @@ with open('good.json', mode='w', encoding='utf-8') as fout:
 with open('medium.json', mode='w', encoding='utf-8') as fout:
     json.dump(output_medium, fout)
 
-print("Mediatheken - Suche: Fertig")
-print(str(datetime.now()))
+logger.info("Mediatheken - Suche: Fertig")
+logger.info(str(datetime.now()))
 
