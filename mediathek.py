@@ -23,14 +23,6 @@ along with this program. If not, see
 # Ubuntu/Debian:   sudo apt-get install python python-lzma  #python-lxml
 # Arch Linux:      pacman -S python xz
 
-#Settings:
-min_duration_sec = 19*60
-min_filesize_mb = 150
-medium_minus_sec = 50*60*60*24
-medium_plus_sec = 50*60*60*24
-good_minus_sec = 7*60*60*24
-good_plus_sec = 1*60*60*24
-
 import os
 os.nice(5)
 import json
@@ -42,6 +34,15 @@ from xml.dom import minidom
 import lzma
 import time
 from datetime import datetime, timedelta
+
+
+#Settings:
+min_duration_sec = 19*60
+min_filesize_mb = 150
+medium_minus_sec = 50*60*60*24
+medium_plus_sec = 50*60*60*24
+good_minus_sec = 7*60*60*24
+good_plus_sec = 1*60*60*24
 
 
 
