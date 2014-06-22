@@ -29,6 +29,7 @@ os.nice(5)
 import json
 import time
 import logging
+import random
 from urllib.request import urlopen
 from xml.dom import minidom
 from datetime import datetime, timedelta
@@ -56,8 +57,14 @@ logger.info(str(datetime.now()))
 logger.info("Mediatheken - Suche: Starting download")
 
 #Download
+#Extract URLs of MediathekView's filmlist
 xmldoc = minidom.parse(URL_SOURCE)
 itemlist = xmldoc.getElementsByTagName('film-update-server-url')
+
+#Do not repeatedly download from the same source
+random.shuffle(itemlist)
+
+#Retry downloading the filmlist 10 times
 for item in itemlist[:10]:
     try:
         url = item.firstChild.nodeValue
@@ -146,6 +153,7 @@ logger.info('Selected {} good ones and {} medium ones, wrote them to json files.
 logger.info('Ignored {} url duplicates and failed to parse {} out of {} lines.'
       .format(url_duplicates, fail, lines))
 
+#Write data to JSON files
 with open('good.json', mode='w', encoding='utf-8') as fout:
     json.dump(output_good, fout)
 with open('medium.json', mode='w', encoding='utf-8') as fout:
