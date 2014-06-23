@@ -30,7 +30,8 @@ import json
 import time
 import logging
 import random
-from urllib.request import urlopen
+from urllib.request import urlopen, urlretrieve
+import urllib.error
 from xml.dom import minidom
 from datetime import datetime, timedelta
 import lzma
@@ -58,12 +59,11 @@ logger.info("Mediatheken - Suche: Starting download")
 
 #Download list of filmservers and extract the URLs of the filmlists
 try:
-    response = urlopen(URL_SOURCE)
-    html = response.read()
+    server_list = urlopen(URL_SOURCE)
 except urllib.error.URLError as e:
     logger.error(e.reason)
 
-xmldoc = minidom.parse(html)
+xmldoc = minidom.parse(server_list)
 itemlist = xmldoc.getElementsByTagName('URL')
 
 #Do not repeatedly download from the same source
