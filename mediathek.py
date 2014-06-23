@@ -66,11 +66,9 @@ except urllib.error.URLError as e:
 xmldoc = minidom.parse(server_list)
 itemlist = xmldoc.getElementsByTagName('URL')
 
-#Do not repeatedly download from the same source
-random.shuffle(itemlist)
-
-#Retry downloading the filmlist 10 times
-for item in itemlist[:10]:
+#Retry downloading the filmlist n times
+#Reverse order to download the latest list first
+for item in itemlist[::-1]:
     try:
         url = item.firstChild.nodeValue
         response = urlopen(url)
@@ -87,7 +85,7 @@ for item in itemlist[:10]:
         else:
             logger.warning("Seems too little data, retry.")
     except (TypeError, IOError, ValueError, AttributeError):
-            logger.error("Failed, retry up to 10 times.")
+            logger.error("Failed to download the filmlist. Will retry .")
 
 #Convert and select
 with open('full.json', encoding='utf-8') as fin:
