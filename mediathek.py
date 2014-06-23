@@ -42,8 +42,8 @@ URL_SOURCE = 'http://zdfmediathk.sourceforge.net/update-json.xml'
 
 
 #Settings:
-min_duration_sec = 19*60
-min_filesize_mb = 150
+min_duration_sec = 3*60
+min_filesize_mb = 15
 medium_minus_sec = 50*60*60*24
 medium_plus_sec = 50*60*60*24
 good_minus_sec = 7*60*60*24
@@ -148,8 +148,8 @@ with open('full.json', encoding='utf-8') as fin:
 
 #Sort by relevance
 sorted_output = sorted(output, key=lambda tup: tup[-1], reverse=True)
-output_good = sorted_output[:600]
-output_medium = sorted_output[601:10000]
+output_good = sorted_output[:1000]
+output_medium = sorted_output[1001:20000]
 
 logger.info('Selected {} good ones and {} medium ones, wrote them to json files.'
       .format(len(output_good), len(output_medium)))
