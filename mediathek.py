@@ -42,8 +42,8 @@ URL_SOURCE = 'http://zdfmediathk.sourceforge.net/update-json.xml'
 
 
 #Settings:
-min_duration_sec = 19*60
-min_filesize_mb = 150
+FILM_MIN_DURATION = "00:03:00"
+min_filesize_mb = 20
 medium_minus_sec = 50*60*60*24
 medium_plus_sec = 50*60*60*24
 good_minus_sec = 7*60*60*24
@@ -121,7 +121,7 @@ with open('full.json', encoding='utf-8') as fin:
         bild = l[10]
         try:
             datum_tm = time.strptime(datum, "%d.%m.%Y")
-            zeit_s = (time.mktime(time.strptime(zeit, "%H:%M:%S")) -
+            film_duration = (time.mktime(time.strptime(dauer, "%H:%M:%S")) -
                      time.mktime(time.strptime("00:00:00", "%H:%M:%S")))
             groesse_mb = float(l[6])
         except ValueError:
@@ -131,13 +131,15 @@ with open('full.json', encoding='utf-8') as fin:
         medium_to = time.localtime(time.time() + medium_plus_sec)
         good_from = time.localtime(time.time() - good_minus_sec)
         good_to = time.localtime(time.time() + good_plus_sec)
-        if(groesse_mb > min_filesize_mb and zeit_s > min_duration_sec):
+        min_duration = (time.mktime(time.strptime(FILM_MIN_DURATION, "%H:%M:%S")) -
+                     time.mktime(time.strptime("00:00:00", "%H:%M:%S")))
+        if(groesse_mb > min_filesize_mb and film_duration > min_duration):
             if(url in urls):
                 url_duplicates+=1
                 continue
             urls[url] = True
             relevance = groesse_mb * 0.01
-            relevance += zeit_s * 0.0005
+            relevance += film_duration * 0.0005
             if(datum_tm > good_from and datum_tm < good_to):
                 relevance += 100
             elif(datum_tm > medium_from and datum_tm < medium_to):
