@@ -37,7 +37,7 @@ import lzma
 
 #Paths
 LOG_FILENAME = 'mediathek.log'
-URL_SOURCE = 'mediathek.xml'
+URL_SOURCE = 'http://zdfmediathk.sourceforge.net/update-json.xml'
 
 
 #Settings:
@@ -56,10 +56,15 @@ logger.info("***")
 logger.info(str(datetime.now()))
 logger.info("Mediatheken - Suche: Starting download")
 
-#Download
-#Extract URLs of MediathekView's filmlist
-xmldoc = minidom.parse(URL_SOURCE)
-itemlist = xmldoc.getElementsByTagName('film-update-server-url')
+#Download list of filmservers and extract the URLs of the filmlists
+try:
+    response = urlopen(URL_SOURCE)
+    html = response.read()
+except urllib.error.URLError as e:
+    logger.error(e.reason)
+
+xmldoc = minidom.parse(html)
+itemlist = xmldoc.getElementsByTagName('URL')
 
 #Do not repeatedly download from the same source
 random.shuffle(itemlist)
