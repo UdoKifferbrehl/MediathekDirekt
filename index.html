@@ -45,7 +45,7 @@ $.getJSON("medium.json", function(jsondata)
 function printSendung(s, classname)
 {
   link = s[7].substr(s[7].lastIndexOf('.') + 1);
-  document.getElementById("results").innerHTML+="<div class='"+classname+"'><span class='r1'><a href='"+s[7]+"'>"+s[1]+" "+s[2]+"</a> <a href='"+s[8]+"' style='font-size:80%'>web</a></span><br><span class='r2'>"+s[0]+" "+s[3]+" "+s[4]+" "+s[5]+" "+link+"</span><br><span class='r3'>"+s[6]+"</a></div>";
+  document.getElementById("results").innerHTML+="<div class='"+classname+"'><span class='r1'><a href='"+s[7]+"'>"+s[1]+" "+s[2]+"</a> <a href='"+s[8]+"' style='font-size:80%'>web</a></span><br><span class='r2'>"+s[0]+" "+s[3]+" "+s[4]+" "+s[5]+" "+link+" "+s[9]+"</span><br><span class='r3'>"+s[6]+"</a></div>";
 }
 
 function search(needle)
