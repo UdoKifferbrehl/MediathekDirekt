@@ -143,7 +143,7 @@ with open('full.json', encoding='utf-8') as fin:
             if(datum_tm > good_from and datum_tm < good_to):
                 relevance += 100
             elif(datum_tm > medium_from and datum_tm < medium_to):
-                relevance += 40
+                relevance += 20
             dline = [sender, thema, titel, datum, zeit, dauer,
                      beschreibung[:80], url, website, relevance]
             output.append(dline)
