@@ -43,11 +43,11 @@ URL_SOURCE = 'http://zdfmediathk.sourceforge.net/update-json.xml'
 
 #Settings:
 FILM_MIN_DURATION = "00:03:00"
-min_filesize_mb = 20
-medium_minus_sec = 50*60*60*24
-medium_plus_sec = 50*60*60*24
-good_minus_sec = 7*60*60*24
-good_plus_sec = 1*60*60*24
+MIN_FILESIZE_MB = 20
+MEDIUM_MINUS_SEC = 50*60*60*24
+MEDIUM_PLUS_SEC = 50*60*60*24
+GOOD_MINUS_SEC = 7*60*60*24
+GOOD_PLUS_SEC = 1*60*60*24
 
 #Logging
 logging.basicConfig(filename=LOG_FILENAME, level=logging.INFO)
@@ -127,13 +127,13 @@ with open('full.json', encoding='utf-8') as fin:
         except ValueError:
             fail+=1
             continue
-        medium_from = time.localtime(time.time() - medium_minus_sec)
-        medium_to = time.localtime(time.time() + medium_plus_sec)
-        good_from = time.localtime(time.time() - good_minus_sec)
-        good_to = time.localtime(time.time() + good_plus_sec)
+        medium_from = time.localtime(time.time() - MEDIUM_MINUS_SEC)
+        medium_to = time.localtime(time.time() + MEDIUM_PLUS_SEC)
+        good_from = time.localtime(time.time() - GOOD_MINUS_SEC)
+        good_to = time.localtime(time.time() + GOOD_PLUS_SEC)
         min_duration = (time.mktime(time.strptime(FILM_MIN_DURATION, "%H:%M:%S")) -
                      time.mktime(time.strptime("00:00:00", "%H:%M:%S")))
-        if(groesse_mb > min_filesize_mb and film_duration > min_duration):
+        if(groesse_mb > MIN_FILESIZE_MB and film_duration > min_duration):
             if(url in urls):
                 url_duplicates+=1
                 continue
