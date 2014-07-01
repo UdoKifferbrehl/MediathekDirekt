@@ -25,7 +25,7 @@ along with this program. If not, see
 #Version: v0.2.1 2014-04-10
 
 #Requires:
-# Ubuntu/Debian:   sudo apt-get install python python-lzma  #python-lxml
+# Ubuntu/Debian:   sudo apt-get install python3 python-lzma
 # Arch Linux:      pacman -S python xz
 
 import os
