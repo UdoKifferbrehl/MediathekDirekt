@@ -10,6 +10,7 @@
 <meta name="viewport" content="width=device-width" />
 <link href="mediathekensuche.png" rel="icon" type="image/png">
 <link href="mediathekensuche.png" rel="apple-touch-icon" sizes="96x96">
+<link href="default.css" rel="stylesheet" media="screen">
 <style type="text/css">
 body { margin:0 auto; padding:10pt; max-width:800px; font-family:'sans-serif',Arial; font-size:120%; }
 input { width:97%; border:1px solid gray; font-size:120%; margin:8pt 0pt; padding:4pt;}
@@ -20,60 +21,14 @@ div .resmore { margin:10pt 0pt; display:none; }
 .r2 { color:green; font-size:80%;}
 .r3 { color:gray; font-size:80%;}
 noscript p {color:red;}
+#footer p { width:97%; background: gray; }
 </style>
 </head>
 <body>
 <img src="mediathekensuche.png" width="96" height="96" style="float:right; margin:10px;"/>
 <h2>Mediathek<wbr />View Websuche</h2>
-<script src="jquery.min.js">
-</script>
-<script>
-var data = [];
-$.getJSON("good.json", function(jsondata)
-{
-  data = data.concat(jsondata);
-  document.getElementById("message").innerHTML="Suche nach Sendung: (nur letzte Woche, lade noch weiter...)";
-  search(document.getElementById("needle").value);
-});
-$.getJSON("medium.json", function(jsondata)
-{
-  data = data.concat(jsondata);
-  document.getElementById("message").innerHTML="Suche nach Sendung:";
-  search(document.getElementById("needle").value);
-});
-
-function printSendung(s, classname)
-{
-  link = s[7].substr(s[7].lastIndexOf('.') + 1);
-  document.getElementById("results").innerHTML+="<div class='"+classname+"'><span class='r1'><a href='"+s[7]+"'>"+s[1]+" "+s[2]+"</a> <a href='"+s[8]+"' style='font-size:80%'>web</a></span><br><span class='r2'>"+s[0]+" "+s[3]+" "+s[4]+" "+s[5]+" "+link+" "+s[9]+"</span><br><span class='r3'>"+s[6]+"</a></div>";
-}
-
-function search(needle)
-{
-  document.getElementById("results").innerHTML="";
-  $("#mehr").hide();
-  var r = 0;
-  for(var i = 0; i<data.length && r<30; i++)
-  {
-    var d = data[i];
-    if(d[1].toLowerCase().indexOf(needle.toLowerCase()) >= 0 || d[2].toLowerCase().indexOf(needle.toLowerCase()) >= 0)
-    {
-      if(r<5) printSendung(d, 'res');
-      else { printSendung(d, 'resmore'); $("#mehr").show(); }
-      r++;
-    }
-  }
-  if(r==0) {
-    document.getElementById("results").innerHTML+="Leider keine Ergebnisse.";
-  }
-}
-function tipp(s)
-{
-  document.getElementById("needle").value=s;
-  search(s);
-}
-function more() { $(".resmore").show(); $("#mehr").hide();}
-</script>
+<script src="js/jquery.min.js"></script>
+<script src="js/mediathekdirekt.js"></script>
 <noscript>
     <p>Bitte aktivieren Sie JavaScript, um alle Funktionen dieser Website nutzen
     zu können.</p>
@@ -87,9 +42,15 @@ function more() { $(".resmore").show(); $("#mehr").hide();}
 <div id="results"></div>
 <p />
 <input id="mehr" type="button" value="mehr..." onclick='more();' />
-<div class='r3'>
-Verwendete Software und Datenquelle: <a href="http://zdfmediathk.sourceforge.net/">MediathekView</a><br>
-MediathekView Websuche v0.2.1 <a href="INSTALL.txt">Anleitung zum installieren</a><br>
-</div>
+<footer>
+    <nav>
+        <ul>
+            <li><a href="info.html">&Uuml;ber uns</a></li>
+            <li><a href="info.html">&Uuml;ber uns</a></li>
+            <li><a href="info.html">&Uuml;ber uns</a></li>
+            <li><a href="info.html">&Uuml;ber uns</a></li>
+        </ul>
+    </nav>
+</footer>
 </body>
 </html>
