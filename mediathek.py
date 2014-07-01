@@ -59,7 +59,7 @@ logger = logging.getLogger("mediathek")
 
 logger.info("***")
 logger.info(str(datetime.now()))
-logger.info("Mediatheken - Suche: Starting download")
+logger.info("MediathekDirekt: Starting download")
 
 #Download list of filmservers and extract the URLs of the filmlists
 try:
@@ -87,7 +87,7 @@ for item in itemlist[::-1]:
             fout.close()
             break
         else:
-            logger.warning("Seems too little data, retry.")
+            logger.warning("Too little data, retry.")
     except (TypeError, IOError, ValueError, AttributeError):
             logger.error("Failed to download the filmlist. Will retry .")
 
@@ -168,6 +168,6 @@ with open('good.json', mode='w', encoding='utf-8') as fout:
 with open('medium.json', mode='w', encoding='utf-8') as fout:
     json.dump(output_medium, fout)
 
-logger.info("Mediatheken - Suche: Fertig")
+logger.info("MediathekDirekt: Download finished")
 logger.info(str(datetime.now()))
 
