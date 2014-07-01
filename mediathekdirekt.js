@@ -1,6 +1,6 @@
 /*
 Copyright 2014, martin776
-          2014, Markus Koschany
+Copyright 2014, Markus Koschany
 
 This program is free software: you can redistribute it and/or modify
 it under the terms of the GNU General Public License as published by
