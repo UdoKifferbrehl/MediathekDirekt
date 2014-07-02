@@ -125,8 +125,14 @@ with open('full.json', encoding='utf-8') as fin:
         bild = l[10]
         try:
             datum_tm = time.strptime(datum, "%d.%m.%Y")
-            film_duration = (time.mktime(time.strptime(dauer, "%H:%M:%S")) -
-                     time.mktime(time.strptime("00:00:00", "%H:%M:%S")))
+            #convert duration to struct_time
+            duration_film = time.strptime(dauer, "%H:%M:%S")
+            #convert duration to datetime and subtract it from another datetime
+            #object that represents the Unix epoch
+            #fixes an OverflowError on 32bit systems
+            t1 = datetime(*duration_film[:6])
+            epoch = datetime(1970, 1, 1)
+            film_duration = t1 - epoch
             groesse_mb = float(l[6])
         except ValueError:
             fail+=1
@@ -135,15 +141,19 @@ with open('full.json', encoding='utf-8') as fin:
         medium_to = time.localtime(time.time() + MEDIUM_PLUS_SEC)
         good_from = time.localtime(time.time() - GOOD_MINUS_SEC)
         good_to = time.localtime(time.time() + GOOD_PLUS_SEC)
-        min_duration = (time.mktime(time.strptime(FILM_MIN_DURATION, "%H:%M:%S")) -
-                     time.mktime(time.strptime("00:00:00", "%H:%M:%S")))
+
+        #convert to datetime object, see film_duration above
+        duration_min = time.strptime(FILM_MIN_DURATION, "%H:%M:%S")
+        t2 = datetime(*duration_min[:6])
+        min_duration = t2 - epoch
+
         if(groesse_mb > MIN_FILESIZE_MB and film_duration > min_duration):
             if(url in urls):
                 url_duplicates+=1
                 continue
             urls[url] = True
             relevance = groesse_mb * 0.01
-            relevance += film_duration * 0.0005
+            relevance += film_duration.seconds * 0.0005
             if(datum_tm > good_from and datum_tm < good_to):
                 relevance += 100
             elif(datum_tm > medium_from and datum_tm < medium_to):
