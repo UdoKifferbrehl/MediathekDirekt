@@ -2,7 +2,7 @@ MediathekDirekt
 ===============
 
 INHALT
-============
+=======
 
 MediathekDirekt besteht aus einem serverseitigen Python-Skript, das die Daten
 sammelt, sortiert und in zwei Dateien im JSON-Format speichert und einer
@@ -30,14 +30,14 @@ automatisch generiert:
 INSTALLATION
 ============
 
-1. Folgende Dateien auf den eigenen Webserver kopieren.
+1. Folgende Dateien auf den eigenen Webserver kopieren
  - index.html
  - mediathekdirekt.js
  - jquery.min.js
  - default.css
  - mediathekdirekt.png
 
-2. Auf dem Server die Abhängigkeiten für mediatheken.py installieren,
+2. Auf dem Server die Abhängigkeiten für mediathek.py installieren
 
   Ubuntu/Debian:
   sudo apt-get install python3 (Python 3.3 wird benötigt.)
@@ -45,7 +45,7 @@ INSTALLATION
   Arch Linux:
   pacman -S python xz
 
-3. Serverskript:
+3. Serverskript
 
  - mediathek.py außerhalb des Webservers installieren / kopieren
  - Testen mit python3 mediathek.py
@@ -59,7 +59,7 @@ INSTALLATION
   Beispiel: Einmal täglich um 9.15 Uhr mediathek.py ausführen
   15 9 * * * mediathekdirekt python3 /home/mediathekdirekt/mediathek.py
 
-  Die Dateien good.json und medium.json mit Hilfe eines kleinen Bash-Skripts
-  zum Webserver kopieren, wo sich die anderen Dateien befinden.
+  Die Dateien good.json und medium.json zum Webserver kopieren, wo sich die
+  anderen Dateien befinden.
 
 5. Im Webbrowser die Adresse von index.html ansteuern und MediathekDirekt verwenden.
