@@ -1,66 +1,68 @@
+MediathekDirekt
+===============
 
-MediathekView Websuche v0.2.1 - 2014-04-10
+INHALT
+============
 
-*** Lizenz:
+MediathekDirekt besteht aus einem serverseitigen Python-Skript, das die Daten
+sammelt, sortiert und in zwei Dateien im JSON-Format speichert und einer
+clientseitigen HTML-Javascript-Seite, die als eine Art "Suchmaschine" fungiert.
 
-Diese Software (mediathek.py index.html INSTALL.txt mediathekensuche.svg)
-steht unter der Lizenz GPLv3: 
-GNU GENERAL PUBLIC LICENSE, Version 3
-http://www.gnu.org/licenses/gpl-3.0.txt
-
-*** Zusammenfassung:
-
-Die MediathekView Websuche besteht aus einem serverseitigen
-Python-Skript, das die Daten sammelt und sortiert
-als zwei JSON-Dateien speichert, und einer 
-clientseitigen HTML-Javascript-Seite als "Suchmaschine".
-
-- mediathek.py : serverseitiger täglicher Sammeldienst
-- index.html : clientseitige Suchmaschine
-- mediathek.xml : Linkliste für Datenquellen
-- mediathekensuche.png
-- mediathekensuche.svg
-- INSTALL.txt (diese Datei)
+- mediathek.py  (serverseitiger täglicher Sammeldienst)
+- index.html (clientseitige Suchmaschine)
+- mediathekensuche.png (Logo im PNG-Format)
+- mediathekensuche.svg (Logo im SVG-Format)
+- mediathekdirekt.js (JavaScript-Code für die Suchmaschine)
+- default.css (Standarddesign der Suchmaschine)
+- INSTALL (diese Datei)
+- LICENSE (Lizenz der Applikation, GPL-3+)
+- COPYING (kompletter Lizenztext der GNU General Public License 3)
+- jquery.js und jquery.min.js (die jQuery-Bibliothek)
+- COPYING.jquery (Lizenz der jQuery-Bibliothek
 
 automatisch generiert:
 - good.json : sehr relevante Suchdaten (~500 kB)
 - medium.json : relevante Suchdaten (~3 MB)
-- full.json : gesamte Daten (>50 MB)
-- mediathek.log
+- full.json : gesamte Daten (>37 MB)
+- mediathek.log : Logdatei mit Status- und Fehlermeldungen
 
 
-*** Installationsanleitung:
+INSTALLATION
+============
 
-1. Obige Dateien auf den eigenen Webserver kopieren. Gehen
- wir davon aus, die Dateien sind jetzt in /var/www/mediathek_ordner/
- Zugriffsreche vernünftig setzen:
-  cd  /var/www/mediathek_ordner/
-  chmod 644 *
-  chmod 744 *.py
-  chmod 600 full.json
+1. Folgende Dateien auf den eigenen Webserver kopieren.
+ - index.html
+ - mediathekdirekt.js
+ - jquery.min.js
+ - default.css
+ - mediathekdirekt.png
 
 2. Auf dem Server die Abhängigkeiten für mediatheken.py installieren,
- z.B. in Ubuntu/Debian:
-  sudo apt-get install python-lzma python-lxml
- z.B. in Arch Linux:      
+
+  Ubuntu/Debian:
+  sudo apt-get install python3 (Python 3.3 wird benötigt.)
+
+  Arch Linux:
   pacman -S python xz
-  
-3. Einmal testen:
-  ./mediathek.py
- (sollte keine Fehler werfen)
 
-4. Zeitgesteuerten täglichen Cronjob hinzufügen:
-   (crontab -l ; echo "0 21 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1")| crontab -
- alternativ "crontab -e" ausführen und folgende Zeile von Hand einfügen:
-0 21 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1
- alternativ alle drei Stunden sammeln:
-0 */3 * * * cd /var/www/mediathek_ordner/ && ./mediathek.py >> mediathek.log 2>&1
- In manchen Systemen muss noch der Daemon gestartet werden,
- z.B. Arch Linux: 
-  systemctl enable cronie
+3. Serverskript:
 
-5. Im Webbrowser die Adresse von index.html ansteuern und 
- die MediathekView Websuche verwenden.
+ - mediathek.py außerhalb des Webservers installieren / kopieren
+ - Testen mit python3 mediathek.py
+
+4. Cronjob
+
+- z.B. /etc/crontab mit Root-Rechten bearbeiten und Serverskript als Benutzer
+  mediathekdirekt ausführen (diesen zuvor mit "adduser mediathekdirekt" anlegen
+  und Shell auf /bin/false setzen)
+
+  Beispiel: Einmal täglich um 9.15 Uhr mediathek.py ausführen
+  15 9 * * * mediathekdirekt python3 /home/mediathekdirekt/mediathek.py
+
+  Die Dateien good.json und medium.json mit Hilfe eines kleinen Bash-Skripts
+  zum Webserver kopieren, wo sich die anderen Dateien befinden.
+
+5. Im Webbrowser die Adresse von index.html ansteuern und MediathekDirekt verwenden.
 
 
 
