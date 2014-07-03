@@ -1,11 +1,99 @@
-body { margin:0 auto; padding:10pt; max-width:800px; font-family:'sans-serif',Arial; font-size:120%; }
+body { margin:0 auto; padding:10pt; color:#333; max-width:800px; font-family:'sans-serif',Arial; font-size:120%; }
 input { width:97%; border:1px solid gray; font-size:120%; margin:8pt 0pt; padding:4pt;}
-input:hover {border-color:black;}
+input:hover {border-color:#888;}
 #results { margin:20pt 0pt; }
 div .res { margin:10pt 0pt; }
 div .resmore { margin:10pt 0pt; display:none; }
 .r2 { color:green; font-size:80%;}
 .r3 { color:gray; font-size:80%;}
 noscript p {color:red;}
-#footer p { width:97%; background: gray; }
+footer { width:97%; }
+h1 {font-size: 150%}
+
+#navigation {
+ margin: 0;
+ padding: 0;
+ list-style: none;
+}
+
+#navigation li a:hover {color: #111;}
+
+#navigation li.current a {color: #9b9796;}
+#navigation li.current a:hover {color: #111;}
+
+#navigation li {margin: 0.5em 0em;}
+
+#navigation a {
+    -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
+    box-shadow:inset 0px 1px 0px 0px #ffffff;
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #f9f9f9), color-stop(1, #e9e9e9) );
+    background:-moz-linear-gradient( center top, #f9f9f9 5%, #e9e9e9 100% );
+    background-color:#f9f9f9;
+    -webkit-border-top-left-radius:5px;
+    -moz-border-radius-topleft:5px;
+    border-top-left-radius:5px;
+    -webkit-border-top-right-radius:5px;
+    -moz-border-radius-topright:5px;
+    border-top-right-radius:5px;
+    -webkit-border-bottom-right-radius:5px;
+    -moz-border-radius-bottomright:5px;
+    border-bottom-right-radius:5px;
+    -webkit-border-bottom-left-radius:5px;
+    -moz-border-radius-bottomleft:5px;
+    border-bottom-left-radius:5px;
+    text-indent:0;
+    border:1px solid #dcdcdc;
+    display:block;
+    color:#666666;
+    font-family:Arial;
+    font-size:20px;
+    font-weight:bold;
+    font-style:normal;
+    line-height:65px;
+    text-decoration:none;
+    text-align:center;
+    text-shadow:1px 1px 0px #ffffff;
+}
+
+#navigation a:hover {
+    background:-webkit-gradient( linear, left top, left bottom, color-stop(0.05, #e9e9e9), color-stop(1, #f9f9f9) );
+    background:-moz-linear-gradient( center top, #e9e9e9 5%, #f9f9f9 100% );
+    background-color:#e9e9e9;
+}
+
+#navigation a:active {
+    position:relative;
+    top:1px;
+}
+
+@media screen and (min-width: 42.5em) {
+#navigation {
+    background: #FFF;
+    padding: 0;
+    border-bottom: 1px solid #888;
+    border-top: 1px solid #888;
+    overflow: hidden;
+}
+
+#navigation li {margin: 0; border: 0;}
+
+#navigation a {
+    padding: 0.75em 0 0.75em 5%;
+    float: left;
+    background-color: transparent;
+    background-image: none;
+    border-width: 0;
+}
+
+#navigation a:hover {
+    background-color: transparent;
+    background-image: none;
+}
+}
+
+/* Links für Footer nach rechts ausrichten */
+@media screen and (min-width: 56em) {
+      #navigation a {padding: 0.75em 1.5em 0.75em 5%;}
+  }
 
