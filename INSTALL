@@ -18,7 +18,7 @@ clientseitigen HTML-Javascript-Seite, die als eine Art "Suchmaschine" fungiert.
 - LICENSE (Lizenz der Applikation, GPL-3+)
 - COPYING (kompletter Lizenztext der GNU General Public License 3)
 - jquery.js und jquery.min.js (die jQuery-Bibliothek)
-- COPYING.jquery (Lizenz der jQuery-Bibliothek
+- COPYING.jquery (Lizenz der jQuery-Bibliothek)
 
 automatisch generiert:
 - good.json : sehr relevante Suchdaten (~500 kB)
