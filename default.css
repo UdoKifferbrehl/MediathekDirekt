@@ -27,6 +27,8 @@ h1 {font-size: 150%}
 #navigation li.current a {color: #9b9796;}
 #navigation li.current a:hover {color: #111;}
 
+#navigation li a:active {border: 0px #fff}
+
 #navigation li {margin: 0.5em 0em;}
 
 #navigation a, #mehr {
@@ -97,6 +99,7 @@ h1 {font-size: 150%}
     background-image: none;
 }
 
+/* "Nach-oben-Button" nur bei Smartphones sichtbar */
 #backtotop {display:none;}
 
 }
@@ -122,7 +125,6 @@ input.clearinput.onX{
   cursor:pointer;
 }
 
-/* "Nach-oben-Button" */
 
 
 
