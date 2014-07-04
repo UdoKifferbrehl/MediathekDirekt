@@ -22,8 +22,6 @@ along with this program. If not, see
 <http://www.gnu.org/licenses/>.
 """
 
-#Version: v0.2.1 2014-04-10
-
 #Requires:
 # Ubuntu/Debian:   sudo apt-get install python3 #requires Python >= 3.3
 # Arch Linux:      pacman -S python xz
