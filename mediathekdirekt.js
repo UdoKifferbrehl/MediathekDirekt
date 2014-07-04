@@ -20,13 +20,12 @@ var data = [];
 $.getJSON("good.json", function(jsondata)
 {
   data = data.concat(jsondata);
-  document.getElementById("message").innerHTML="Suche nach Sendung: (nur letzte Woche, lade noch weiter...)";
   search(document.getElementById("needle").value);
 });
 $.getJSON("medium.json", function(jsondata)
 {
   data = data.concat(jsondata);
-  document.getElementById("message").innerHTML="Suche nach Sendung:";
+  document.getElementById("message").innerHTML="";
   search(document.getElementById("needle").value);
 });
 
@@ -61,3 +60,16 @@ function tipp(s)
   search(s);
 }
 function more() { $(".resmore").show(); $("#mehr").hide();}
+
+/* Clear input */
+
+function tog(v){return v ?'addClass':'removeClass';}
+
+$(document).on('input', '.clearinput', function(){
+   $(this)[tog(this.value)]('x');
+}).on('mousemove', '.x', function( e ){
+   $(this)[tog(this.offsetWidth-30 < e.clientX-this.getBoundingClientRect().left)]('onX');
+}).on('click', '.onX', function(){
+   $(this).removeClass('x onX').val('');
+});
+

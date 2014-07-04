@@ -16,3 +16,10 @@ along with this program. If not, see <http://www.gnu.org/licenses/>.
 
 MediathekDirekt incorporates the jquery library which is licensed under a
 different license namely MIT/Expat. See COPYING.jquery for further information.
+
+The clear.png icon was taken from
+http://www.iconarchive.com/show/oxygen-icons-by-oxygen-icons.org/Actions-edit-clear-locationbar-rtl-icon.html
+
+It was originally licensed under the LGPL and due to section 3 of the license
+converted into a GPL-3+ licensed icon. Credits for creating this icon go to the
+Oxygen Team http://www.iconarchive.com/artist/oxygen-icons.org.html

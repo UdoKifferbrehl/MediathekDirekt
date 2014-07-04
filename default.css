@@ -9,6 +9,7 @@ div .resmore { margin:10pt 0pt; display:none; }
 noscript p {color:red;}
 footer { width:97%; }
 h1 {font-size: 150%}
+#logo {float:right; margin:10px;}
 
 #navigation {
  margin: 0;
@@ -96,4 +97,19 @@ h1 {font-size: 150%}
 @media screen and (min-width: 56em) {
       #navigation a {padding: 0.75em 1.5em 0.75em 5%;}
   }
+
+input.clearinput {
+    background:url(clear.png)
+    no-repeat right -30px center;
+    border: 1px solid #999;
+    padding:3px 18px 3px 4px; /* USE the same right padding in jQ! */
+    border-radius:3px;
+    transition: background 0.4s;
+}
+input.clearinput.x{
+  background-position: right 5px center;
+}
+input.clearinput.onX{
+  cursor:pointer;
+}
 
