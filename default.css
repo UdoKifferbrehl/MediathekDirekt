@@ -1,3 +1,5 @@
+/* Basis */
+
 body { margin:0 auto; padding:10pt; color:#333; max-width:800px; font-family:'sans-serif',Arial; font-size:120%; }
 input { width:97%; border:1px solid gray; font-size:120%; margin:8pt 0pt; padding:4pt;}
 input:hover {border-color:#888;}
@@ -10,6 +12,9 @@ noscript p {color:red;}
 footer { width:97%; }
 h1 {font-size: 150%}
 #logo {float:right; margin:10px;}
+
+
+/* Navigation */
 
 #navigation {
  margin: 0;
@@ -98,11 +103,13 @@ h1 {font-size: 150%}
       #navigation a {padding: 0.75em 1.5em 0.75em 5%;}
   }
 
+/* Inhalt des Eingabefelds löschen */
+
 input.clearinput {
     background:url(clear.png)
     no-repeat right -30px center;
     border: 1px solid #999;
-    padding:3px 18px 3px 4px; /* USE the same right padding in jQ! */
+    padding:3px 18px 3px 4px;
     border-radius:3px;
     transition: background 0.4s;
 }
