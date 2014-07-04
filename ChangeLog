@@ -1,2 +1,17 @@
+2014-07-04 v0.3.0 Erste Veröffentlichung auf mediathekdirekt.de.
+                  - clear.png und clearinput-Funktion hinzugefügt
+                  - Lizenzen hinzugefügt
+                  - Installationsanleitung verbessert und in INSTALL umbenannt,
+                    das gesamte Projekt folgt jetzt dem GNU-Schema bei der Benennung
+                    von Dateien
+                  - Footer implementiert
+                  - mediathek.py:
+                    +Bugfix für OverflowError auf 32bit-Systemen
+                    +Fehler beseitigt, bei dem Zeit anstatt Dauer der Sendung mit
+                    dem Minimumwert verglichen wurde.
+                    +Komplett nach Python3 konvertiert
+                    +Loggen in Datei implementiert
+                  - Code in mediathekdirekt.js und default.css ausgelagert.
+                    Dies sollte Vorteile beim Cachen auf dem Webserver bieten.
 2014-04-10 v0.2.1 Korrekturen für Python3 und Arch Linux, Umbennung in "MediathekView Websuche"
 2014-03-31 v0.2   erste lauffähige Version
