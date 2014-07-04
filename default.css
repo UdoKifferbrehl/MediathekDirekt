@@ -27,7 +27,7 @@ h1 {font-size: 150%}
 #navigation li.current a {color: #9b9796;}
 #navigation li.current a:hover {color: #111;}
 
-#navigation li a:active {border: 0px #fff}
+#navigation li a:focus {outline: 0;}
 
 #navigation li {margin: 0.5em 0em;}
 
