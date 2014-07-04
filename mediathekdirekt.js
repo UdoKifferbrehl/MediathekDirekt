@@ -54,11 +54,12 @@ function search(needle)
     document.getElementById("results").innerHTML+="Leider keine Ergebnisse.";
   }
 }
+/*
 function tipp(s)
 {
   document.getElementById("needle").value=s;
   search(s);
-}
+}*/
 function more() { $(".resmore").show(); $("#mehr").hide();}
 
 /* Clear input */
