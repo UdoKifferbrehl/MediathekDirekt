@@ -112,8 +112,7 @@ h1 {font-size: 150%}
 /* Inhalt des Eingabefelds löschen */
 
 input.clearinput {
-    background:url(clear.png)
-    no-repeat right -30px center;
+    background:url(clear.png) no-repeat right -30px center;
     border: 1px solid #999;
     border-radius:3px;
     transition: background 0.4s;

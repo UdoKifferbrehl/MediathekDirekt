@@ -64,7 +64,7 @@ function more() { $(".resmore").show(); $("#mehr").hide();}
 
 /* Clear input */
 
-function tog(v){return v ?'addClass':'removeClass';}
+function tog(v){return v?'addClass':'removeClass';}
 
 $(document).on('input', '.clearinput', function(){
    $(this)[tog(this.value)]('x');
