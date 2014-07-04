@@ -29,7 +29,7 @@ h1 {font-size: 150%}
 
 #navigation li {margin: 0.5em 0em;}
 
-#navigation a {
+#navigation a, #mehr {
     -moz-box-shadow:inset 0px 1px 0px 0px #ffffff;
     -webkit-box-shadow:inset 0px 1px 0px 0px #ffffff;
     box-shadow:inset 0px 1px 0px 0px #ffffff;
@@ -96,6 +96,9 @@ h1 {font-size: 150%}
     background-color: transparent;
     background-image: none;
 }
+
+#backtotop {display:none;}
+
 }
 
 /* Links für Footer nach rechts ausrichten */
@@ -118,4 +121,8 @@ input.clearinput.x{
 input.clearinput.onX{
   cursor:pointer;
 }
+
+/* "Nach-oben-Button" */
+
+
 
