@@ -1,7 +1,7 @@
 /* Basis */
 
 body { margin:0 auto; padding:10pt; color:#333; max-width:800px; font-family:'sans-serif',Arial; font-size:120%; }
-input { width:97%; border:1px solid gray; font-size:120%; margin:4pt 0pt; padding:2pt;}
+input { width:97%; font-size:120%; margin:4pt 0pt; padding:2pt;}
 input:hover {border-color:#888;}
 #results { margin:20pt 0pt; }
 div .res { margin:10pt 0pt; }
@@ -13,6 +13,7 @@ footer { width:97%; }
 h1 {font-size: 150%}
 #logo {float:right; margin:10px;}
 .about {font-size:80%; }
+.copyright {font-size:80%;}
 
 /* Navigation */
 
@@ -116,6 +117,7 @@ input.clearinput {
     border: 1px solid #999;
     border-radius:3px;
     transition: background 0.4s;
+    height: 35px;
 }
 input.clearinput.x{
   background-position: right 5px center;
