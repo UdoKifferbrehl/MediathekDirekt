@@ -40,7 +40,7 @@ INSTALLATION
 2. Auf dem Server die Abhängigkeiten für mediathek.py installieren
 
   Ubuntu/Debian:
-  sudo apt-get install python3 (Python 3.3 wird benötigt.)
+  sudo apt-get install python3 (Python >= 3.3 wird benötigt.)
 
   Arch Linux:
   pacman -S python xz
