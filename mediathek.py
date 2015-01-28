@@ -42,8 +42,8 @@ import lzma
 try:
     os.nice(5)
 except OSError:
-    print("The nice command is only available on UNIX systems.
-                   Proceeding without it.")
+    print("The nice command is only available on UNIX systems."
+                   "Proceeding without it.")
 
 
 #Paths
