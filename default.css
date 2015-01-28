@@ -110,22 +110,3 @@ h1 {font-size: 150%}
       #navigation a {padding: 0.25em 1.5em 0.25em 5%;}
   }
 
-/* Inhalt des Eingabefelds löschen */
-
-input.clearinput {
-    background:url(clear.png) no-repeat right -30px center;
-    border: 1px solid #999;
-    border-radius:3px;
-    transition: background 0.4s;
-    height: 35px;
-}
-input.clearinput.x{
-  background-position: right 5px center;
-}
-input.clearinput.onX{
-  cursor:pointer;
-}
-
-
-
-
