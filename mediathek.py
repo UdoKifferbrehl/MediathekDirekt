@@ -27,7 +27,6 @@ along with this program. If not, see
 # Arch Linux:      pacman -S python xz
 
 import os
-os.nice(5)
 import json
 import time
 import logging
@@ -37,6 +36,16 @@ import urllib.error
 from xml.dom import minidom
 from datetime import datetime, timedelta
 import lzma
+
+# Use nice on UNIX systems and print a warning for all other
+# operating systems.
+
+try:
+    os.nice(5)
+except OSError:
+    print("The nice command is only available on UNIX systems.
+                   Proceeding without it.")
+
 
 #Paths
 LOG_FILENAME = 'mediathek.log'
