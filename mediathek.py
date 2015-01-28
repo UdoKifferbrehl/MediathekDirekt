@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 
 """
-MediathekDirekt - MediathekView im Web
-Serverskript
+MediathekDirekt - Serverskript
 
 Copyright 2014, martin776
 Copyright 2014, Markus Koschany
