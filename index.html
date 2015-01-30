@@ -8,24 +8,100 @@
 Mediatheken des deutschsprachigen Fernsehens" />
 <meta name="keywords" content="Fernsehen, Suche, Mediathek,
 &ouml;ffentlich-rechtlich, Freie Software" />
-<link href="mediathekdirekt.png" rel="icon" type="image/png">
-<link href="mediathekdirekt.png" rel="apple-touch-icon" sizes="96x96">
-<link href="default.css" rel="stylesheet" media="screen">
+<link href="images/mediathekdirekt.png" rel="icon" type="image/png">
+<link href="images/mediathekdirekt.png" rel="apple-touch-icon" sizes="96x96">
+<link href="css/default.css" rel="stylesheet" media="screen">
+<link href="css/jquery.dataTables.css" rel="stylesheet" media="screen">
+<script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/jquery.dataTables.js"></script>
+<script type="text/javascript" charset="utf-8" class="init">
+$(document).ready( function () {
+    $('#mediathekdirekt tfoot th').each( function () {
+        var title = $('#mediathekdirekt thead th').eq( $(this).index() ).text();
+        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
+    } );
+
+    var table = $('#mediathekdirekt').DataTable( {
+        deferRender: true,
+        "columnDefs": [
+          {
+            "targets": 1,
+            "data": 7,
+            "render": function (data, type, row, meta) {
+                return '<a href="'+data+'">'+row[1]+'</a> <br /> '+row[6]+' ';
+            }
+          },
+          {
+            "targets": 0,
+            "data": 8,
+            "render": function (data, type, row, meta) {
+                return '<a href="'+data+'">'+row[0]+'</a>';
+            }
+          }
+        ],
+        "ajax": {
+            "url": "good.json",
+            "dataSrc": ""
+         },
+        "columns": [
+            null,
+            null,
+            { "visible": false },
+            null,
+            { "visible": false },
+            null,
+            { "visible": false },
+            { "visible": false },
+            { "visible": false }
+        ]
+    } );
+    table.columns().eq( 0 ).each( function ( colIdx ) {
+        $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
+            table
+                 .column( colIdx )
+                 .search( this.value )
+                 .draw();
+        } );
+    } );
+} );
+</script>
+
 </head>
 <body>
-<img id="logo" alt="Logo" src="mediathekdirekt.png" width="96" height="96"/>
+<img id="logo" alt="Logo" src="images/mediathekdirekt.png" width="96" height="96"/>
 <h1>Mediathek<wbr />Direkt.de</h1>
 <noscript>
     <p>Bitte aktivieren Sie JavaScript, um alle Funktionen dieser Website nutzen
     zu k&ouml;nnen.</p>
 </noscript>
-<div id="message">Lade Daten zu allen Sendungen, bitte etwas Geduld...</div>
-<form onSubmit="return false;">
-<input name="" value="" placeholder="Suche nach Sendungen" class="clearinput"
-onKeyUp="search(this.value)" autofocus size="40" id="needle" />
-</form>
-<div id="results"></div>
-<input id="mehr" type="button" value="mehr..." onclick='more();' />
+<table id="mediathekdirekt" class="display compact" cellspacing="0" width="100%">
+    <thead>
+        <tr>
+            <th>Sender</th>
+            <th>Titel</th>
+            <th>Thema</th>
+            <th>Datum</th>
+            <th>Uhrzeit</th>
+            <th>Dauer</th>
+            <th>Beschreibung</th>
+            <th>URL</th>
+            <th>Webseite</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <th>Sender</th>
+            <th>Titel</th>
+            <th>Thema</th>
+            <th>Datum</th>
+            <th>Uhrzeit</th>
+            <th>Dauer</th>
+            <th>Beschreibung</th>
+            <th>URL</th>
+            <th>Webseite</th>
+        </tr>
+    </tfoot>
+</table>
 <footer>
     <nav>
         <ul id="navigation">
@@ -37,7 +113,5 @@ onKeyUp="search(this.value)" autofocus size="40" id="needle" />
         </ul>
     </nav>
 </footer>
-<script src="jquery.min.js"></script>
-<script src="mediathekdirekt.js"></script>
 </body>
 </html>

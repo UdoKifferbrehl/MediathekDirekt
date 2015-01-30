@@ -164,13 +164,13 @@ with open('full.json', encoding='utf-8') as fin:
                 relevance += 100
             elif(datum_tm > medium_from and datum_tm < medium_to):
                 relevance += 20
-            dline = [sender, thema, titel, datum, zeit, dauer,
+            dline = [sender, titel, thema, datum, zeit, dauer,
                      beschreibung[:80], url, website, relevance]
             output.append(dline)
 
 #Sort by relevance
 sorted_output = sorted(output, key=lambda tup: tup[-1], reverse=True)
-output_good = sorted_output[:600]
+output_good = sorted_output[:10000]
 output_medium = sorted_output[601:10000]
 
 logger.info('Selected {} good ones and {} medium ones, wrote them to json files.'
@@ -180,7 +180,7 @@ logger.info('Ignored {} url duplicates and failed to parse {} out of {} lines.'
 
 #Write data to JSON files
 with open('good.json', mode='w', encoding='utf-8') as fout:
-    json.dump(output_good, fout)
+    json.dump(output_good, fout, indent=0)
 with open('medium.json', mode='w', encoding='utf-8') as fout:
     json.dump(output_medium, fout)
 
