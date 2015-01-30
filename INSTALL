@@ -12,17 +12,15 @@ clientseitigen HTML-Javascript-Seite, die als eine Art "Suchmaschine" fungiert.
 - index.html (clientseitige Suchmaschine)
 - mediathekensuche.png (Logo im PNG-Format)
 - mediathekensuche.svg (Logo im SVG-Format)
-- mediathekdirekt.js (JavaScript-Code für die Suchmaschine)
-- default.css (Standarddesign der Suchmaschine)
+- js-Verzeichnis (JavaScript-Code für die Suchmaschine)
+- css-Verzeichnis (Standarddesign der Suchmaschine)
+- lang-Verzeichnis (deutsche Übersetzung von dataTables)
+- images-Verzeichnis (alle Icons und Bilder)
 - INSTALL (diese Datei)
-- LICENSE (Lizenz der Applikation, GPL-3+)
-- COPYING (kompletter Lizenztext der GNU General Public License 3)
-- jquery.js und jquery.min.js (die jQuery-Bibliothek)
-- COPYING.jquery (Lizenz der jQuery-Bibliothek)
+- LICENSE (Lizenz der Applikation, AGPL-3+)
 
 automatisch generiert:
-- good.json : sehr relevante Suchdaten (~500 kB)
-- medium.json : relevante Suchdaten (~3 MB)
+- good.json : sehr relevante Suchdaten (~3,5 MB)
 - full.json : gesamte Daten (>37 MB)
 - mediathek.log : Logdatei mit Status- und Fehlermeldungen
 
@@ -30,12 +28,9 @@ automatisch generiert:
 INSTALLATION
 ============
 
-1. Folgende Dateien auf den eigenen Webserver kopieren
+1. Folgende Dateien und Verzeichnisse auf den eigenen Webserver kopieren
  - index.html
- - mediathekdirekt.js
- - jquery.min.js
- - default.css
- - mediathekdirekt.png
+ - css, js und images
 
 2. Auf dem Server die Abhängigkeiten für mediathek.py installieren
 
