@@ -165,7 +165,7 @@ with open('full.json', encoding='utf-8') as fin:
             elif(datum_tm > medium_from and datum_tm < medium_to):
                 relevance += 20
             dline = [sender, titel, thema, datum, dauer,
-                     beschreibung[:80], url, website, relevance]
+                     beschreibung[:80], url, website]
             output.append(dline)
 
 #Sort by relevance
