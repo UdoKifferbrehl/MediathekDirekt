@@ -16,12 +16,7 @@ Mediatheken des deutschsprachigen Fernsehens" />
 <script type="text/javascript" charset="utf-8" src="js/jquery.dataTables.min.js"></script>
 <script type="text/javascript" charset="utf-8" class="init">
 $(document).ready( function () {
-    $('#mediathekdirekt tfoot th').each( function () {
-        var title = $('#mediathekdirekt thead th').eq( $(this).index() ).text();
-        $(this).html( '<input type="text" placeholder="Search '+title+'" />' );
-    } );
-
-    var table = $('#mediathekdirekt').DataTable( {
+     $('#mediathekdirekt').DataTable( {
         deferRender: true,
         "columnDefs": [
           {
@@ -54,14 +49,6 @@ $(document).ready( function () {
             { "visible": false },
             { "visible": false }
         ]
-    } );
-    table.columns().eq( 0 ).each( function ( colIdx ) {
-        $( 'input', table.column( colIdx ).footer() ).on( 'keyup change', function () {
-            table
-                 .column( colIdx )
-                 .search( this.value )
-                 .draw();
-        } );
     } );
 } );
 </script>
