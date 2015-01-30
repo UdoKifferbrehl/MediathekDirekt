@@ -1,3 +1,5 @@
+2015-01-30 v0.4.1 Benutze die richtigen Links für Titel und Sender. (index.html)
+                  - Bringe alle HTML-Seiten des Projektes in das Git-Repo ein.
 2015-01-30 v0.4   Hauptveränderungen:
                   - Wechsel zu jquery.dataTables. Dadurch verbesserte Suche
                     durch "smart search", sortierbare Tabellenspalten,
