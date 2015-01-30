@@ -7,6 +7,11 @@ noscript p {color:red;}
 .copyright {font-size:80%;}
 .r3 { color: #545454;}
 
+#mediathekdirekt table {
+    cellspacing: 0;
+    width: 100%;
+}
+
 /* Navigation */
 
 #navigation {
