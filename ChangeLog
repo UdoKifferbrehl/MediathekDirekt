@@ -1,4 +1,24 @@
-2014.07-11 v0.3.1 Valid HTML5, cleanup and small tweaks.
+2015-01-30 v0.4   Hauptveränderungen:
+                  - Wechsel zu jquery.dataTables. Dadurch verbesserte Suche
+                    durch "smart search", sortierbare Tabellenspalten,
+                    Pagination.
+                  - Als Datenquelle wird nur noch good.json verwendet, das nun die
+                    10000 relevantesten Datensätze enthält. Dies ist ein
+                    Kompromiss, da eine größere Anzahl die clientseitige Suche
+                    verlangsamt und 10000 Datensätze die interessantesten
+                    Sendungen (lange Dauer und hohe Qualität) schon abdeckt.
+                  - Die Suche ist weiterhin clientseitig dadurch einige
+                    Sekunden Ladezeit, alle weiteren Aktionen erfolgen aber im
+                    Browser des Nutzers.
+                  - mediathekdirekt.js wurde entfernt. Es ist obsolet.
+                  - clear.png wurde entfernt.
+                  - mediathek.py: Uhrzeit der Sendung wurde entfernt, da Dauer
+                    und Datum schon eine hinreichend gute Filterung ermöglichen
+                    und dadurch etwas Traffic/Platz gespart wird.
+                  - Lizenz von MediathekDirekt.de zu AGPL-3+ geändert.
+                  - Neue Lizenzen und Copyright in LICENSE dokumentiert.
+                  - Update der jQuery-Bibliothek zu Version 1.11.
+2014-07-11 v0.3.1 Gültiges HTML5, ein paar Aufräumarbeiten und kleine Verbesserungen.
 2014-07-04 v0.3.0 Erste Veröffentlichung auf mediathekdirekt.de.
                   - clear.png und clearinput-Funktion hinzugefügt
                   - Lizenzen hinzugefügt
