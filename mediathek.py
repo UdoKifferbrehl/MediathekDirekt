@@ -171,18 +171,15 @@ with open('full.json', encoding='utf-8') as fin:
 #Sort by relevance
 sorted_output = sorted(output, key=lambda tup: tup[-1], reverse=True)
 output_good = sorted_output[:10000]
-output_medium = sorted_output[601:10000]
 
-logger.info('Selected {} good ones and {} medium ones, wrote them to json files.'
-      .format(len(output_good), len(output_medium)))
+logger.info('Selected {} good ones and wrote them to json files.'
+      .format(len(output_good)))
 logger.info('Ignored {} url duplicates and failed to parse {} out of {} lines.'
       .format(url_duplicates, fail, lines))
 
 #Write data to JSON files
 with open('good.json', mode='w', encoding='utf-8') as fout:
     json.dump(output_good, fout, indent=0)
-with open('medium.json', mode='w', encoding='utf-8') as fout:
-    json.dump(output_medium, fout)
 
 logger.info("MediathekDirekt: Download finished")
 logger.info(str(datetime.now()))
