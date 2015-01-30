@@ -54,7 +54,7 @@ INSTALLATION
   Beispiel: Einmal täglich um 9.15 Uhr mediathek.py ausführen
   15 9 * * * mediathekdirekt python3 /home/mediathekdirekt/mediathek.py
 
-  Die Dateien good.json und medium.json zum Webserver kopieren, wo sich die
-  anderen Dateien befinden.
+  Die Datei good.json zum Webserver kopieren, wo sich die anderen Dateien
+  befinden.
 
 5. Im Webbrowser die Adresse von index.html ansteuern und MediathekDirekt verwenden.
