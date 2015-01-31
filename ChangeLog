@@ -1,7 +1,6 @@
 2015-01-31 v0.4.3 mediathek.py: Entferne den Relevanzwert nach dem Sortieren
                   -Der Wert wird auf der Webseite sowieso nicht dargestellt.
                    Dies spart einige Bytes.
-                   because it is not shown on the website anyway.
 2015-01-30 v0.4.2 Set cache: false and dataType: json (index.html)
                   - Update der INSTALL-Datei
 2015-01-30 v0.4.1 Benutze die richtigen Links für Titel und Sender. (index.html)
