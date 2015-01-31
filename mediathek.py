@@ -173,7 +173,7 @@ sorted_output = sorted(output, key=lambda tup: tup[-1], reverse=True)
 output_good = sorted_output[:10000]
 
 # Remove the relevance item because we don't display it on the website anyway
-# This will safe a few bytes
+# This will save a few bytes
 for item in output_good:
     del item[-1]
 
