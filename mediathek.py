@@ -170,7 +170,7 @@ with open('full.json', encoding='utf-8') as fin:
 
 # Sort by relevance
 sorted_output = sorted(output, key=lambda tup: tup[-1], reverse=True)
-output_good = sorted_output[:10000]
+output_good = sorted_output[:12000]
 
 # Remove the relevance item because we don't display it on the website anyway
 # This will save a few bytes
