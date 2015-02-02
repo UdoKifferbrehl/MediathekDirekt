@@ -29,7 +29,6 @@ import os
 import json
 import time
 import logging
-import random
 from urllib.request import urlopen, urlretrieve
 import urllib.error
 from xml.dom import minidom
