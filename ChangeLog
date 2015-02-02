@@ -1,3 +1,5 @@
+2015-02-01 v0.4.5 Behebe alle PEP-8-Fehler.
+                  - Füge zwei Fragen und Antworten zu faq.html hinzu.
 2015-01-31 v0.4.4 Füge 404.html, robots.txt und sitemap.xml hinzu.
                   - Erhöhe die Anzahl der Einträge von 10000 auf 12000.
 2015-01-31 v0.4.3 mediathek.py: Entferne den Relevanzwert nach dem Sortieren
