@@ -21,7 +21,7 @@ along with this program. If not, see
 <http://www.gnu.org/licenses/>.
 """
 
-#Requires:
+# Requires:
 # Ubuntu/Debian:   sudo apt-get install python3 #requires Python >= 3.3
 # Arch Linux:      pacman -S python xz
 
@@ -43,23 +43,23 @@ try:
     os.nice(5)
 except OSError:
     print("The nice command is only available on UNIX systems."
-                   "Proceeding without it.")
+          "Proceeding without it.")
 
 
-#Paths
+# Paths
 LOG_FILENAME = 'mediathek.log'
 URL_SOURCE = 'http://zdfmediathk.sourceforge.net/update-json.xml'
 
 
-#Settings:
+# Settings:
 FILM_MIN_DURATION = "00:03:00"
 MIN_FILESIZE_MB = 20
-MEDIUM_MINUS_SEC = 50*60*60*24
-MEDIUM_PLUS_SEC = 50*60*60*24
-GOOD_MINUS_SEC = 7*60*60*24
-GOOD_PLUS_SEC = 1*60*60*24
+MEDIUM_MINUS_SEC = 50 * 60 * 60 * 24
+MEDIUM_PLUS_SEC = 50 * 60 * 60 * 24
+GOOD_MINUS_SEC = 7 * 60 * 60 * 24
+GOOD_PLUS_SEC = 1 * 60 * 60 * 24
 
-#Logging
+# Logging
 logging.basicConfig(filename=LOG_FILENAME, level=logging.INFO)
 logger = logging.getLogger("mediathek")
 
@@ -67,7 +67,7 @@ logger.info("***")
 logger.info(str(datetime.now()))
 logger.info("MediathekDirekt: Starting download")
 
-#Download list of filmservers and extract the URLs of the filmlists
+# Download list of filmservers and extract the URLs of the filmlists
 try:
     server_list = urlopen(URL_SOURCE)
 except urllib.error.URLError as e:
@@ -76,8 +76,8 @@ except urllib.error.URLError as e:
 xmldoc = minidom.parse(server_list)
 itemlist = xmldoc.getElementsByTagName('URL')
 
-#Retry downloading the filmlist n times
-#Reverse order to download the latest list first
+# Retry downloading the filmlist n times
+# Reverse order to download the latest list first
 for item in itemlist[::-1]:
     try:
         url = item.firstChild.nodeValue
@@ -85,8 +85,8 @@ for item in itemlist[::-1]:
         html = response.read()
         logger.info("Downloaded {} bytes from {}.".format(len(html), url))
         data = lzma.decompress(html)
-        logger.info("Extracted {} bytes with {} lines.".format(len(data),
-                                                         data.count(b"\n")))
+        logger.info("Extracted {} bytes with {} lines."
+                    .format(len(data), data.count(b"\n")))
         if data.count(b"\n") > 10000:
             fout = open('full.json', 'wb')
             fout.write(data)
@@ -95,9 +95,9 @@ for item in itemlist[::-1]:
         else:
             logger.warning("Too little data, retry.")
     except (TypeError, IOError, ValueError, AttributeError):
-            logger.error("Failed to download the filmlist. Will retry .")
+        logger.error("Failed to download the filmlist. Will retry .")
 
-#Convert and select
+# Convert and select
 with open('full.json', encoding='utf-8') as fin:
     fail = 0
     sender = ''
@@ -108,14 +108,14 @@ with open('full.json', encoding='utf-8') as fin:
     urls = {}
     url_duplicates = 0
     for line in fin:
-        lines+=1
+        lines += 1
         try:
             l = json.loads(line[8:-2])
         except ValueError:
-            fail+=1
+            fail += 1
             continue
         if(l[0] != ''):
-            sender = str(l[0].encode("ascii","ignore").decode('ascii'))
+            sender = str(l[0].encode("ascii", "ignore").decode('ascii'))
             sender2num[sender] = 1
         else:
             sender2num[sender] += 1
@@ -131,31 +131,31 @@ with open('full.json', encoding='utf-8') as fin:
         bild = l[10]
         try:
             datum_tm = time.strptime(datum, "%d.%m.%Y")
-            #convert duration to struct_time
+            # convert duration to struct_time
             duration_film = time.strptime(dauer, "%H:%M:%S")
-            #convert duration to datetime and subtract it from another datetime
-            #object that represents the Unix epoch
-            #fixes an OverflowError on 32bit systems
+            # convert duration to datetime and subtract it from another
+            # datetime object that represents the Unix epoch
+            # fixes an OverflowError on 32bit systems
             t1 = datetime(*duration_film[:6])
             epoch = datetime(1970, 1, 1)
             film_duration = t1 - epoch
             groesse_mb = float(l[6])
         except ValueError:
-            fail+=1
+            fail += 1
             continue
         medium_from = time.localtime(time.time() - MEDIUM_MINUS_SEC)
         medium_to = time.localtime(time.time() + MEDIUM_PLUS_SEC)
         good_from = time.localtime(time.time() - GOOD_MINUS_SEC)
         good_to = time.localtime(time.time() + GOOD_PLUS_SEC)
 
-        #convert to datetime object, see film_duration above
+        # convert to datetime object, see film_duration above
         duration_min = time.strptime(FILM_MIN_DURATION, "%H:%M:%S")
         t2 = datetime(*duration_min[:6])
         min_duration = t2 - epoch
 
         if(groesse_mb > MIN_FILESIZE_MB and film_duration > min_duration):
             if(url in urls):
-                url_duplicates+=1
+                url_duplicates += 1
                 continue
             urls[url] = True
             relevance = groesse_mb * 0.01
@@ -178,9 +178,9 @@ for item in output_good:
     del item[-1]
 
 logger.info('Selected {} good ones and wrote them to good.json file.'
-      .format(len(output_good)))
+            .format(len(output_good)))
 logger.info('Ignored {} url duplicates and failed to parse {} out of {} lines.'
-      .format(url_duplicates, fail, lines))
+            .format(url_duplicates, fail, lines))
 
 # Write data to JSON file
 with open('good.json', mode='w', encoding='utf-8') as fout:
@@ -188,4 +188,3 @@ with open('good.json', mode='w', encoding='utf-8') as fout:
 
 logger.info("MediathekDirekt: Download finished")
 logger.info(str(datetime.now()))
-
