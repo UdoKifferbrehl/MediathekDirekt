@@ -66,7 +66,7 @@ logger.info("***")
 logger.info(str(datetime.now()))
 logger.info("MediathekDirekt: Starting download")
 
-# Download list of filmservers and extract the URLs of the filmlists
+# Download list of film servers and extract the URLs of the film lists
 try:
     server_list = urlopen(URL_SOURCE)
 except urllib.error.URLError as e:
