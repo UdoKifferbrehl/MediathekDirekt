@@ -127,7 +127,6 @@ with open('full.json', encoding='utf-8') as fin:
         beschreibung = l[7]
         url = l[8]
         website = l[9]
-        bild = l[10]
         try:
             datum_tm = time.strptime(datum, "%d.%m.%Y")
             # convert duration to struct_time
