@@ -1,3 +1,6 @@
+2015-02-05 v0.4.6 Füge moment.js-Unterstützung hinzu.
+                  - Die Datumsspalte kann nun korrekt nach Datum sortiert
+                    werden.
 2015-02-01 v0.4.5 Behebe alle PEP-8-Fehler.
                   - Füge zwei Fragen und Antworten zu faq.html hinzu.
 2015-01-31 v0.4.4 Füge 404.html, robots.txt und sitemap.xml hinzu.

@@ -16,8 +16,12 @@ Mediatheken des deutschsprachigen Fernsehens" />
 <link href="css/jquery.dataTables.min.css" rel="stylesheet" media="screen">
 <script type="text/javascript" charset="utf-8" src="js/jquery.min.js"></script>
 <script type="text/javascript" charset="utf-8" src="js/jquery.dataTables.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/moment.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="js/datetime-moment.js"></script>
 <script type="text/javascript" class="init">
 $(document).ready( function () {
+    $.fn.dataTable.moment( 'DD.MM.YYYY' );
+
      $('#mediathekdirekt').DataTable( {
         "language": {
             "url": "lang/dataTables.German.lang"
