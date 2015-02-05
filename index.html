@@ -23,6 +23,7 @@ $(document).ready( function () {
     $.fn.dataTable.moment( 'DD.MM.YYYY' );
 
      $('#mediathekdirekt').DataTable( {
+        "order": [[ 3, "desc" ]],
         "language": {
             "url": "lang/dataTables.German.lang"
         },
