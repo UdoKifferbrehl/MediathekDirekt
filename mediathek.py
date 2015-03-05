@@ -182,7 +182,8 @@ logger.info('Ignored {} url duplicates and failed to parse {} out of {} lines.'
 
 # Write data to JSON file
 with open('good.json', mode='w', encoding='utf-8') as fout:
-    json.dump(output_good, fout)
+    # Useful for debugging and clearer. json.dump(output_good, fout, indent=4)
+    json.dump(output_good, fout, indent=4)
 
 logger.info("MediathekDirekt: Download finished")
 logger.info(str(datetime.now()))
