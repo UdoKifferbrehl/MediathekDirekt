@@ -85,8 +85,8 @@ def main(argv=None):
     program_shortdesc = __import__('__main__').__doc__.split("\n")[1]
     program_license = '''%s
 
-  Copyright 2014,       martin776
-  Copyright 2014, 2015, Markus Koschany
+  Copyright 2014,      martin776
+  Copyright 2014-2015, Markus Koschany
 
   This program is free software: you can redistribute it and/or modify
   it under the terms of the GNU General Public License as published by
@@ -109,8 +109,9 @@ USAGE
         # Setup argument parser
         parser = ArgumentParser(description=program_license,
                                 formatter_class=RawDescriptionHelpFormatter)
-        parser.add_argument("-d", "--download", dest="download",
-                            action="store_true", help="download MediathekView's film list")
+        parser.add_argument(
+            "-d", "--download", dest="download", action="store_true",
+                            help="download MediathekView's film list")
         parser.add_argument(
             "-c", "--convert", dest="convert", action="store_true",
                             help="convert MediathekView's film list to MediathekDirekt format")
@@ -269,29 +270,19 @@ def convert_filmlist(path):
                     relevance += 100
                 elif(datum_tm > medium_from and datum_tm < medium_to):
                     relevance += 20
-                dline = [sender, titel, thema, datum, dauer,
-                         beschreibung[:80], url, website, relevance]
+                dline = {
+                    "sender": sender, "titel": titel, "thema": thema, "datum": datum, "dauer": dauer,
+                         "beschreibung": beschreibung[:80], "url": url, "website": website, "relevance": relevance}
                 output.append(dline)
 
-    # Sort by relevance
-    sorted_output = sorted(output, key=lambda tup: tup[-1], reverse=True)
-    output_good = sorted_output[:12000]
-
-    # Remove the relevance item because we don't display it on the website anyway
-    # This will save a few bytes
-    for item in output_good:
-        del item[-1]
-
     logger.info('Selected {} good ones and wrote them to good.json file.'
-                .format(len(output_good)))
+                .format(len(output)))
     logger.info('Ignored {} url duplicates and failed to parse {} out of {} lines.'
                 .format(url_duplicates, fail, lines))
 
     # Write data to JSON file
     with open(os.path.join(path, 'good.json'), mode='w', encoding='utf-8') as fout:
-        # Useful for debugging and clearer. json.dump(output_good, fout,
-        # indent=4)
-        json.dump(output_good, fout, indent=4)
+        json.dump(output, fout, indent=4)
 
     logger.info("MediathekDirekt: successfully converted film list ")
     logger.info(str(datetime.now()))
