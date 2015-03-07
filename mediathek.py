@@ -38,6 +38,7 @@ from argparse import ArgumentParser
 from argparse import RawDescriptionHelpFormatter
 
 
+
 __all__ = []
 __version__ = 0.5
 __date__ = '04.02.2014'
@@ -111,10 +112,10 @@ USAGE
                                 formatter_class=RawDescriptionHelpFormatter)
         parser.add_argument(
             "-d", "--download", dest="download", action="store_true",
-                            help="download MediathekView's film list")
+            help="download MediathekView's film list")
         parser.add_argument(
             "-c", "--convert", dest="convert", action="store_true",
-                            help="convert MediathekView's film list to MediathekDirekt format")
+            help="convert MediathekView's film list to MediathekDirekt format")
         parser.add_argument(
             '-v', '--version', action='version', version=program_version_message)
         parser.add_argument(
@@ -199,6 +200,9 @@ def get_filmlist(path):
 
 def convert_filmlist(path):
     path = checkpath(path)
+    if not os.path.isfile(os.path.join(path, 'full.json')):
+        print("The film list does not exist. Please download it first.")
+        sys.exit(1)
 
     logger.info("***")
     logger.info(str(datetime.now()))
@@ -272,7 +276,7 @@ def convert_filmlist(path):
                     relevance += 20
                 dline = {
                     "sender": sender, "titel": titel, "thema": thema, "datum": datum, "dauer": dauer,
-                         "beschreibung": beschreibung[:80], "url": url, "website": website, "relevance": relevance}
+                    "beschreibung": beschreibung[:80], "url": url, "website": website, "relevance": relevance}
                 output.append(dline)
 
     logger.info('Selected {} good ones and wrote them to good.json file.'
