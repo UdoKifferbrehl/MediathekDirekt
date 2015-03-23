@@ -237,18 +237,18 @@ def convert_filmlist(path):
                 continue
             urls[url] = True
 
-            # Create a valid Python dictionary with all relevant broadcasting
+            # Create a valid Python tuple with all relevant broadcasting
             # information
-            dline = {
-                "sender": sender,
-                "titel": titel,
-                "thema": thema,
-                "datum": datum,
-                "dauer": dauer,
-                "beschreibung": beschreibung[:80],
-                "url": url,
-                "website": website
-            }
+            dline = (
+                sender,
+                titel,
+                thema,
+                datum,
+                dauer,
+                beschreibung[:80],
+                url,
+                website
+            )
             # Append the broadcast to our converted film list
             output.append(dline)
 
