@@ -230,10 +230,15 @@ def convert_filmlist(path):
             beschreibung = l[7]
             url = l[8]
             website = l[9]
+
+            # Ignore duplicate URLs and skip this line
             if(url in urls):
                 url_duplicates += 1
                 continue
             urls[url] = True
+
+            # Create a valid Python dictionary with all relevant broadcasting
+            # information
             dline = {
                 "sender": sender,
                 "titel": titel,
@@ -244,6 +249,7 @@ def convert_filmlist(path):
                 "url": url,
                 "website": website
             }
+            # Append the broadcast to our converted film list
             output.append(dline)
 
     logger.info('Selected {} good ones and wrote them to good.json file.'
