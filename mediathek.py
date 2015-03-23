@@ -235,8 +235,15 @@ def convert_filmlist(path):
                 continue
             urls[url] = True
             dline = {
-                "sender": sender, "titel": titel, "thema": thema, "datum": datum, "dauer": dauer,
-                "beschreibung": beschreibung[:80], "url": url, "website": website }
+                "sender": sender,
+                "titel": titel,
+                "thema": thema,
+                "datum": datum,
+                "dauer": dauer,
+                "beschreibung": beschreibung[:80],
+                "url": url,
+                "website": website
+            }
             output.append(dline)
 
     logger.info('Selected {} good ones and wrote them to good.json file.'
