@@ -58,14 +58,6 @@ LOG_FILENAME = 'mediathek.log'
 URL_SOURCE = 'http://zdfmediathk.sourceforge.net/update-json.xml'
 
 
-# Settings:
-FILM_MIN_DURATION = "00:03:00"
-MIN_FILESIZE_MB = 20
-MEDIUM_MINUS_SEC = 50 * 60 * 60 * 24
-MEDIUM_PLUS_SEC = 50 * 60 * 60 * 24
-GOOD_MINUS_SEC = 7 * 60 * 60 * 24
-GOOD_PLUS_SEC = 1 * 60 * 60 * 24
-
 # Logging
 logging.basicConfig(filename=LOG_FILENAME, level=logging.INFO)
 logger = logging.getLogger("mediathek")
@@ -234,50 +226,18 @@ def convert_filmlist(path):
                 thema = l[1]
             titel = l[2]
             datum = l[3]
-            # zeit = l[4]
             dauer = l[5]
             beschreibung = l[7]
             url = l[8]
             website = l[9]
-            try:
-                datum_tm = time.strptime(datum, "%d.%m.%Y")
-                # convert duration to struct_time
-                duration_film = time.strptime(dauer, "%H:%M:%S")
-                # convert duration to datetime and subtract it from another
-                # datetime object that represents the Unix epoch
-                # fixes an OverflowError on 32bit systems
-                t1 = datetime(*duration_film[:6])
-                epoch = datetime(1970, 1, 1)
-                film_duration = t1 - epoch
-                groesse_mb = float(l[6])
-            except ValueError:
-                fail += 1
+            if(url in urls):
+                url_duplicates += 1
                 continue
-            medium_from = time.localtime(time.time() - MEDIUM_MINUS_SEC)
-            medium_to = time.localtime(time.time() + MEDIUM_PLUS_SEC)
-            good_from = time.localtime(time.time() - GOOD_MINUS_SEC)
-            good_to = time.localtime(time.time() + GOOD_PLUS_SEC)
-
-            # convert to datetime object, see film_duration above
-            duration_min = time.strptime(FILM_MIN_DURATION, "%H:%M:%S")
-            t2 = datetime(*duration_min[:6])
-            min_duration = t2 - epoch
-
-            if(groesse_mb > MIN_FILESIZE_MB and film_duration > min_duration):
-                if(url in urls):
-                    url_duplicates += 1
-                    continue
-                urls[url] = True
-                relevance = groesse_mb * 0.01
-                relevance += film_duration.seconds * 0.0005
-                if(datum_tm > good_from and datum_tm < good_to):
-                    relevance += 100
-                elif(datum_tm > medium_from and datum_tm < medium_to):
-                    relevance += 20
-                dline = {
-                    "sender": sender, "titel": titel, "thema": thema, "datum": datum, "dauer": dauer,
-                    "beschreibung": beschreibung[:80], "url": url, "website": website, "relevance": relevance}
-                output.append(dline)
+            urls[url] = True
+            dline = {
+                "sender": sender, "titel": titel, "thema": thema, "datum": datum, "dauer": dauer,
+                "beschreibung": beschreibung[:80], "url": url, "website": website }
+            output.append(dline)
 
     logger.info('Selected {} good ones and wrote them to good.json file.'
                 .format(len(output)))
@@ -288,7 +248,7 @@ def convert_filmlist(path):
     with open(os.path.join(path, 'good.json'), mode='w', encoding='utf-8') as fout:
         json.dump(output, fout, indent=4)
 
-    logger.info("MediathekDirekt: successfully converted film list ")
+    logger.info("MediathekDirekt: successfully converted film list")
     logger.info(str(datetime.now()))
 
 if __name__ == "__main__":
