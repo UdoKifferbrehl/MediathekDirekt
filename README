@@ -16,7 +16,7 @@ clientseitigen HTML-Javascript-Seite, die als eine Art "Suchmaschine" fungiert.
 - css-Verzeichnis (Standarddesign der Suchmaschine)
 - lang-Verzeichnis (deutsche Übersetzung von dataTables)
 - images-Verzeichnis (alle Icons und Bilder)
-- INSTALL (diese Datei)
+- README (diese Datei)
 - LICENSE (Lizenz der Applikation, AGPL-3+)
 
 automatisch generiert:
