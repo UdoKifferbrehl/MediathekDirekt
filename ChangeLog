@@ -1,52 +1,58 @@
-2015-02-05 v0.4.6 Füge moment.js-Unterstützung hinzu.
-                  - Die Datumsspalte kann nun korrekt nach Datum sortiert
-                    werden.
-2015-02-01 v0.4.5 Behebe alle PEP-8-Fehler.
-                  - Füge zwei Fragen und Antworten zu faq.html hinzu.
-2015-01-31 v0.4.4 Füge 404.html, robots.txt und sitemap.xml hinzu.
-                  - Erhöhe die Anzahl der Einträge von 10000 auf 12000.
-2015-01-31 v0.4.3 mediathek.py: Entferne den Relevanzwert nach dem Sortieren
-                  -Der Wert wird auf der Webseite sowieso nicht dargestellt.
-                   Dies spart einige Bytes.
-2015-01-30 v0.4.2 Set cache: false and dataType: json (index.html)
-                  - Update der INSTALL-Datei
-2015-01-30 v0.4.1 Benutze die richtigen Links für Titel und Sender. (index.html)
-                  - Bringe alle HTML-Seiten des Projektes in das Git-Repo ein.
-2015-01-30 v0.4   Hauptveränderungen:
-                  - Wechsel zu jquery.dataTables. Dadurch verbesserte Suche
-                    durch "smart search", sortierbare Tabellenspalten,
-                    Pagination.
-                  - Als Datenquelle wird nur noch good.json verwendet, das nun die
-                    10000 relevantesten Datensätze enthält. Dies ist ein
-                    Kompromiss, da eine größere Anzahl die clientseitige Suche
-                    verlangsamt und 10000 Datensätze die interessantesten
-                    Sendungen (lange Dauer und hohe Qualität) schon abdeckt.
-                  - Die Suche ist weiterhin clientseitig dadurch einige
-                    Sekunden Ladezeit, alle weiteren Aktionen erfolgen aber im
-                    Browser des Nutzers.
-                  - mediathekdirekt.js wurde entfernt. Es ist obsolet.
-                  - clear.png wurde entfernt.
-                  - mediathek.py: Uhrzeit der Sendung wurde entfernt, da Dauer
-                    und Datum schon eine hinreichend gute Filterung ermöglichen
-                    und dadurch etwas Traffic/Platz gespart wird.
-                  - Lizenz von MediathekDirekt.de zu AGPL-3+ geändert.
-                  - Neue Lizenzen und Copyright in LICENSE dokumentiert.
-                  - Update der jQuery-Bibliothek zu Version 1.11.
-2014-07-11 v0.3.1 Gültiges HTML5, ein paar Aufräumarbeiten und kleine Verbesserungen.
-2014-07-04 v0.3.0 Erste Veröffentlichung auf mediathekdirekt.de.
-                  - clear.png und clearinput-Funktion hinzugefügt
-                  - Lizenzen hinzugefügt
-                  - Installationsanleitung verbessert und in INSTALL umbenannt,
-                    das gesamte Projekt folgt jetzt dem GNU-Schema bei der Benennung
-                    von Dateien
-                  - Footer implementiert
-                  - mediathek.py:
-                    +Bugfix für OverflowError auf 32bit-Systemen
-                    +Fehler beseitigt, bei dem Zeit anstatt Dauer der Sendung mit
-                    dem Minimumwert verglichen wurde.
-                    +Komplett nach Python3 konvertiert
-                    +Loggen in Datei implementiert
-                  - Code in mediathekdirekt.js und default.css ausgelagert.
-                    Dies sollte Vorteile beim Cachen auf dem Webserver bieten.
-2014-04-10 v0.2.1 Korrekturen für Python3 und Arch Linux, Umbennung in "MediathekView Websuche"
-2014-03-31 v0.2   erste lauffähige Version
+2015-02-05 v0.4.6
+ -Füge moment.js-Unterstützung hinzu.
+ - Die Datumsspalte kann nun korrekt nach Datum sortiert werden.
+2015-02-01 v0.4.5
+ - Behebe alle PEP-8-Fehler.
+ - Füge zwei Fragen und Antworten zu faq.html hinzu.
+2015-01-31 v0.4.4
+ - Füge 404.html, robots.txt und sitemap.xml hinzu.
+ - Erhöhe die Anzahl der Einträge von 10000 auf 12000.
+2015-01-31 v0.4.3
+ - mediathek.py: Entferne den Relevanzwert nach dem Sortieren.
+   Der Wert wird auf der Webseite sowieso nicht dargestellt.
+   Dies spart einige Bytes.
+2015-01-30 v0.4.2
+ - Set cache: false and dataType: json (index.html).
+ - Update der INSTALL-Datei.
+2015-01-30 v0.4.1
+ - Benutze die richtigen Links für Titel und Sender. (index.html)
+ - Bringe alle HTML-Seiten des Projektes in das Git-Repo ein.
+2015-01-30 v0.4
+ - Hauptveränderungen:
+ - Wechsel zu jquery.dataTables. Dadurch verbesserte Suche durch "smart
+   search", sortierbare Tabellenspalten, Pagination.
+ - Als Datenquelle wird nur noch good.json verwendet, das nun die 10000
+   relevantesten Datensätze enthält. Dies ist ein Kompromiss, da eine größere
+   Anzahl die clientseitige Suche verlangsamt und 10000 Datensätze die
+   interessantesten Sendungen (lange Dauer und hohe Qualität) schon abdeckt.
+ - Die Suche ist weiterhin clientseitig dadurch einige Sekunden Ladezeit, alle
+   weiteren Aktionen erfolgen aber im Browser des Nutzers.
+ - mediathekdirekt.js wurde entfernt. Es ist obsolet.
+ - clear.png wurde entfernt.
+ - mediathek.py: Uhrzeit der Sendung wurde entfernt, da Dauer und Datum schon
+   eine hinreichend gute Filterung ermöglichen und dadurch etwas Traffic/Platz
+   gespart wird.
+ - Lizenz von MediathekDirekt.de zu AGPL-3+ geändert.
+ - Neue Lizenzen und Copyright in LICENSE dokumentiert.
+ - Update der jQuery-Bibliothek zu Version 1.11.
+2014-07-11 v0.3.1
+ - Gültiges HTML5, ein paar Aufräumarbeiten und kleine Verbesserungen.
+2014-07-04 v0.3.0
+ - Erste Veröffentlichung auf mediathekdirekt.de.
+ - clear.png und clearinput-Funktion hinzugefügt
+ - Lizenzen hinzugefügt
+ - Installationsanleitung verbessert und in INSTALL umbenannt, das gesamte
+   Projekt folgt jetzt dem GNU-Schema bei der Benennung von Dateien
+ - Footer implementiert
+ - mediathek.py:
+   +Bugfix für OverflowError auf 32bit-Systemen
+   +Fehler beseitigt, bei dem Zeit anstatt Dauer der Sendung mit dem
+    Minimumwert verglichen wurde.
+   +Komplett nach Python3 konvertiert
+   +Loggen in Datei implementiert
+  - Code in mediathekdirekt.js und default.css ausgelagert.
+    Dies sollte Vorteile beim Cachen auf dem Webserver bieten.
+2014-04-10 v0.2.1
+ - Korrekturen für Python3 und Arch Linux, Umbennung in "MediathekView Websuche"
+2014-03-31 v0.2
+ - erste lauffähige Version
