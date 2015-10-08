@@ -164,7 +164,7 @@ def get_filmlist(path):
                     fout.write(data)
                     break
             else:
-                logger.warning("Too little data, retry.")
+                logger.warning("Not enough data, will retry.")
         except (TypeError, IOError, ValueError, AttributeError) as e:
             logger.error("Failed to download the film list. Will retry .")
             logger.error(e.reason)
