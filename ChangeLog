@@ -50,8 +50,8 @@
     Minimumwert verglichen wurde.
    +Komplett nach Python3 konvertiert
    +Loggen in Datei implementiert
-  - Code in mediathekdirekt.js und default.css ausgelagert.
-    Dies sollte Vorteile beim Cachen auf dem Webserver bieten.
+ - Code in mediathekdirekt.js und default.css ausgelagert.
+   Dies sollte Vorteile beim Cachen auf dem Webserver bieten.
 2014-04-10 v0.2.1
  - Korrekturen für Python3 und Arch Linux, Umbennung in "MediathekView Websuche"
 2014-03-31 v0.2
