@@ -40,9 +40,9 @@ from argparse import RawDescriptionHelpFormatter
 
 
 __all__ = []
-__version__ = 0.5
+__version__ = 0.6
 __date__ = '04.02.2014'
-__updated__ = '06.03.2015'
+__updated__ = '06.10.2015'
 
 # Use nice on UNIX systems and print a warning for all other
 # operating systems.
