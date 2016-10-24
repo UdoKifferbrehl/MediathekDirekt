@@ -33,14 +33,14 @@ $(document).ready( function () {
             "targets": 1,
             "data": 6,
             "render": function (data, type, row, meta) {
-                return '<a href="'+data+'">'+row[1]+'</a> <br /><span class="r3"> '+row[5]+'</span> ';
+                return '<a href="'+data+'" target="_blank">'+row[1]+'</a> <br /><span class="r3"> '+row[5]+'</span> ';
             }
           },
           {
             "targets": 0,
             "data": 7,
             "render": function (data, type, row, meta) {
-                return '<a href="'+data+'">'+row[0]+'</a>';
+                return '<a href="'+data+'" target="_blank">'+row[0]+'</a>';
             }
           }
         ],
